@@ -9,24 +9,30 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <link href="karibu-theme.css" rel="stylesheet">
 <style>
-  .wrap{max-width:520px;margin:0 auto;min-height:100vh;background:var(--k-bg);display:flex;flex-direction:column}
-  .content{padding:20px 16px 40px;flex:1}
-  .topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 0}
+  .wrap{max-width:540px;margin:0 auto;min-height:100vh;background:var(--k-bg);display:flex;flex-direction:column}
+  .content{padding:18px 16px 40px;flex:1}
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px 8px}
   .logo{font-family:var(--k-font-head);font-weight:800;color:var(--k-coral);font-size:1.15rem;line-height:1}
   .logo small{color:var(--k-slate);font-weight:700;font-size:.7rem;display:block}
-  .langtoggle{display:inline-flex;border:1px solid var(--k-border);border-radius:var(--k-radius-pill);overflow:hidden;background:#fff}
-  .langtoggle button{border:0;background:transparent;font-family:var(--k-font-head);font-weight:700;
-    font-size:.8rem;padding:6px 14px;cursor:pointer;color:var(--k-slate)}
-  .langtoggle button.on{background:var(--k-coral);color:#fff}
+  .lang-picker-wrap{display:flex;align-items:center;gap:6px}
+  .lang-select{font-family:var(--k-font-head);font-weight:700;font-size:.82rem;padding:7px 10px;
+    border:1.5px solid var(--k-border);border-radius:var(--k-radius-pill);background:#fff;color:var(--k-navy);
+    cursor:pointer;outline:none}
+  .lang-select:focus{border-color:var(--k-coral)}
+  .fr-clarity-banner{display:flex;align-items:center;gap:8px;background:rgba(252,104,84,.12);
+    border:1px solid rgba(252,104,84,.25);color:var(--k-coral-dark);font-size:.82rem;font-weight:700;
+    border-radius:var(--k-radius-sm);padding:8px 14px;margin:4px 16px 10px}
+  .fr-clarity-banner .target-badge{background:var(--k-coral);color:#fff;border-radius:var(--k-radius-pill);
+    padding:2px 8px;font-size:.72rem;letter-spacing:.03em;text-transform:uppercase;white-space:nowrap}
   .icon-badge{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.22);font-size:1.2rem}
   .muted{color:var(--k-slate)} .lead{color:var(--k-navy)}
-  h1.q{margin:.15em 0 .1em;color:var(--k-navy);font-size:1.5rem}
+  h1.q{margin:.15em 0 .1em;color:var(--k-navy);font-size:1.45rem}
   .field{margin:16px 0}
   .field label{display:block;font-weight:700;margin-bottom:6px;color:var(--k-navy);font-size:.95rem}
-  .field input,.field select{width:100%;font:inherit;padding:13px 14px;border:1px solid var(--k-border);
+  .field input,.field select{width:100%;font:inherit;padding:12px 14px;border:1px solid var(--k-border);
     border-radius:var(--k-radius-sm);background:#fff;color:var(--k-navy)}
   .field input:focus,.field select:focus{outline:2px solid var(--k-coral);border-color:transparent}
-  .statement{font-size:1.2rem;font-weight:600;margin:6px 0 22px;color:var(--k-navy)}
+  .statement{font-size:1.18rem;font-weight:600;margin:6px 0 22px;color:var(--k-navy);line-height:1.4}
   .slider-row{display:flex;align-items:center;gap:14px;margin:22px 0 8px}
   .slider-row input[type=range]{flex:1;accent-color:var(--k-coral)}
   .slider-ends{font-size:.85rem;color:var(--k-slate);min-width:74px}
@@ -38,9 +44,6 @@
   .res-dot{width:12px;height:12px;border-radius:50%;flex:0 0 auto}
   .res-name{font-weight:700;flex:1}
   .footnote{color:var(--k-slate);font-size:.78rem;text-align:center;padding:8px 20px 24px}
-  .footnote a{color:var(--k-slate)}
-  .wo-note{background:var(--k-coral-subtle);color:var(--k-coral-dark);font-size:.82rem;
-    border-radius:var(--k-radius-sm);padding:10px 14px;margin:0 16px 8px;text-align:center}
   .stack{margin-bottom:16px} .hidden{display:none}
   .cta-wrap{padding:12px 16px 20px;background:var(--k-bg);position:sticky;bottom:0}
   .k-btn-cta:disabled{background:#cdd6cf;cursor:not-allowed}
@@ -50,12 +53,26 @@
 <div class="wrap">
   <div class="topbar">
     <span class="logo">Karibu<small>by BSF</small></span>
-    <span class="langtoggle">
-      <button id="lang-fr" class="on" onclick="setLang('fr')">FR</button>
-      <button id="lang-wo" onclick="setLang('wo')">WO</button>
-    </span>
+    <div class="lang-picker-wrap">
+      <select id="lang-select" class="lang-select" aria-label="Langue de guidage">
+        <option value="fr">🇫🇷 Français</option>
+        <option value="wo">🇸🇳 Wolof</option>
+        <option value="ff">🇸🇳 Pulaar</option>
+        <option value="srr">🇸🇳 Seereer</option>
+        <option value="mnk">🇸🇳 Mandinka</option>
+        <option value="snk">🇸🇳 Soninké</option>
+        <option value="joo">🇸🇳 Joola</option>
+        <option value="disabled-balant" disabled>⏳ Balant (Bientôt disponible)</option>
+        <option value="disabled-saafi" disabled>⏳ Saafi-saafi (Bientôt disponible)</option>
+      </select>
+    </div>
   </div>
-  <div id="wo-note" class="wo-note hidden"></div>
+
+  <!-- BANDEAU EXPLICITE : Test du français, langue d'interface au choix -->
+  <div class="fr-clarity-banner">
+    <span class="target-badge">FRANÇAIS</span>
+    <span id="targetNotice">Ce test évalue toujours votre niveau en français, dans la langue d'interface de votre choix.</span>
+  </div>
 
   <!-- PROFILE -->
   <div id="screen-profile">
@@ -144,13 +161,14 @@
 </div>
 
 <script>
-/* ---------- Données bilingues : 30 descripteurs ---------- */
-const QUESTIONS = [{"ID":31,"CEFR":"A1","CEFRValue":0,"Area":"L'écoute","AreaValue":0,"title":{"fr":"Je peux comprendre des mots familiers et des expressions très courantes au sujet de moi-même, de ma famille et de l'environnement concret et immédiat, si les gens parlent lentement et distinctement.","wo":"Man naa dégg baat yu ma miin ak wax yu yomb ci sama bopp, sama njaboot ak li ma wër, su ñu waxee ndànk te leer."}},{"ID":36,"CEFR":"A2","CEFRValue":1,"Area":"L'écoute","AreaValue":0,"title":{"fr":"Je peux comprendre des expressions et un vocabulaire très fréquent relatifs à ce qui me concerne de très près (par ex. moi-même, ma famille, les achats, l'environnement proche, le travail). Je peux saisir l'essentiel d'annonces et de messages simples et clairs.","wo":"Man naa dégg wax ak baat yu bari yu jëm ci sama dund (sama bopp, njaboot, njënd, li ma wër, liggéey). Man naa jàpp li am solo ci ay yégle ak bataaxal yu yomb te leer."}},{"ID":41,"CEFR":"B1","CEFRValue":2,"Area":"L'écoute","AreaValue":0,"title":{"fr":"Je peux comprendre les points essentiels quand un langage clair et standard est utilisé et s'il s'agit de sujets familiers concernant le travail, l'école, les loisirs, etc. Je peux comprendre l'essentiel de nombreuses émissions de radio ou de télévision sur l'actualité ou sur des sujets qui m'intéressent à titre personnel ou professionnel si l'on parle d'une façon relativement lente et distincte.","wo":"Man naa dégg li am solo su ñu waxee ci làkk bu leer te miin, ci mbir yu ma miin (liggéey, jàngu, noflaay…). Man naa jàpp li ëpp ci emisioŋ radio walla tele su ñu waxee ndànk te leer."}},{"ID":46,"CEFR":"B2","CEFRValue":3,"Area":"L'écoute","AreaValue":0,"title":{"fr":"Je peux comprendre des conférences et des discours assez longs et même suivre une argumentation complexe si le sujet m'en est relativement familier. Je peux comprendre la plupart des émissions de télévision sur l'actualité et les informations. Je peux comprendre la plupart des films en langue standard.","wo":"Man naa dégg ay waxtaan ak diskuur yu gudd, te topp benn xalaat bu jafe su mbir mi may miin. Man naa jàpp li ëpp ci emisioŋ tele ak filim yu ñu def ci làkk bu standaar."}},{"ID":51,"CEFR":"C1","CEFRValue":4,"Area":"L'écoute","AreaValue":0,"title":{"fr":"Je peux comprendre un long discours même s'il n'est pas clairement structuré et que les articulations sont seulement implicites. Je peux comprendre les émissions de télévision et les films sans trop d'effort.","wo":"Man naa dégg diskuur bu gudd doonte du bu leer te seqoo yi ñungi ci biir. Man naa jàpp emisioŋ tele ak filim yu bare te bañ a sonn."}},{"ID":56,"CEFR":"C2","CEFRValue":5,"Area":"L'écoute","AreaValue":0,"title":{"fr":"Je n'ai aucune difficulté à comprendre le langage oral, que ce soit dans les conditions du direct ou dans les médias et quand on parle vite, à condition d'avoir du temps pour me familiariser avec un accent particulier.","wo":"Amuma benn jafe-jafe ci dégg wax, muy ci direk walla ci medià, te su ñu waxee gaaw, su ma amee tuuti jamono ngir miin aksaŋ bi."}},{"ID":32,"CEFR":"A1","CEFRValue":0,"Area":"Lecture","AreaValue":1,"title":{"fr":"Je peux comprendre des noms familiers, des mots ainsi que des phrases très simples, par exemple dans des annonces, des affiches ou des catalogues.","wo":"Man naa jàng tur yu ma miin, ay baat ak mbind yu yomb, ni ci ay yégle, ay afiche walla ay katalog."}},{"ID":37,"CEFR":"A2","CEFRValue":1,"Area":"Lecture","AreaValue":1,"title":{"fr":"Je peux lire des textes courts très simples. Je peux trouver une information particulière prévisible dans des documents courants comme les publicités, les prospectus, les menus et les horaires et je peux comprendre des lettres personnelles courtes et simples.","wo":"Man naa jàng ay mbind yu gàtt te yomb. Man naa gis xibaar bu ma soxla ci ay mbind ni reklaam, meññ ak orëe, te man naa jàng bataaxal yu gàtt te yomb."}},{"ID":42,"CEFR":"B1","CEFRValue":2,"Area":"Lecture","AreaValue":1,"title":{"fr":"Je peux comprendre des textes rédigés essentiellement dans une langue courante ou relative à mon travail. Je peux comprendre la description d'événements, l'expression de sentiments et de souhaits dans des lettres personnelles.","wo":"Man naa jàng ay mbind yu ñu bind ci làkk bu miin walla bu jëm ci sama liggéey. Man naa jàpp melokaanu xew-xew, yég-yég ak bëgg-bëgg ci ay bataaxal."}},{"ID":47,"CEFR":"B2","CEFRValue":3,"Area":"Lecture","AreaValue":1,"title":{"fr":"Je peux lire des articles et des rapports sur des questions contemporaines dans lesquels les auteurs adoptent une attitude particulière ou un certain point de vue. Je peux comprendre un texte littéraire contemporain en prose.","wo":"Man naa jàng ay artikel ak rapoor ci mbir yu jamono ci lu am xalaat bu wóor. Man naa jàpp benn mbind bu literatiir bu jamono."}},{"ID":52,"CEFR":"C1","CEFRValue":4,"Area":"Lecture","AreaValue":1,"title":{"fr":"Je peux comprendre des textes factuels ou littéraires longs et complexes et en apprécier les différences de style. Je peux comprendre des articles spécialisés et de longues instructions techniques même lorsqu'ils ne sont pas en relation avec mon domaine.","wo":"Man naa jàng ay mbind yu gudd te jafe, di jàpp seen wuute ci melokaan. Man naa jàpp ay artikel yu xóot ak ndigal yu gudd yu teknik, doonte bokkuñu ci sama wàll."}},{"ID":57,"CEFR":"C2","CEFRValue":5,"Area":"Lecture","AreaValue":1,"title":{"fr":"Je peux lire sans effort tout type de texte, même abstrait ou complexe quant au fond ou à la forme, par exemple un manuel, un article spécialisé ou une œuvre littéraire.","wo":"Man naa jàng lu yomb ay xeeti mbind yépp, doonte dañu jafe walla xóot ci seen tënk walla melokaan, ni ci benn téere, benn artikel bu xóot walla benn liggéeyu literatiir."}},{"ID":33,"CEFR":"A1","CEFRValue":0,"Area":"Interaction orale","AreaValue":2,"title":{"fr":"Je peux communiquer, de façon simple, à condition que l'interlocuteur soit disposé à répéter ou à reformuler ses phrases plus lentement et à m'aider à formuler ce que j'essaie de dire. Je peux poser des questions simples sur des sujets familiers ou sur ce dont j'ai immédiatement besoin, ainsi que répondre à de telles questions.","wo":"Man naa waxtaan ci lu yomb, su nit ki nangoo baamtu walla waxaat ndànk te dimbali ma. Man naa laaj ay laaj yu yomb ci mbir yu ma miin walla li ma soxla, te tontu ci laaj yu ni mel."}},{"ID":38,"CEFR":"A2","CEFRValue":1,"Area":"Interaction orale","AreaValue":2,"title":{"fr":"Je peux communiquer lors de tâches simples et habituelles ne demandant qu'un échange d'informations simple et direct sur des sujets et des activités familiers. Je peux avoir des échanges très brefs même si, en règle générale, je ne comprends pas assez pour poursuivre une conversation.","wo":"Man naa waxtaan ci mbir yu yomb te miin yu laaj rekk benn wexeltu xibaar bu yomb. Man naa def ay wexeltu yu gàtt, doonte du ma dégg lu doy ngir wéyal waxtaan bi."}},{"ID":43,"CEFR":"B1","CEFRValue":2,"Area":"Interaction orale","AreaValue":2,"title":{"fr":"Je peux faire face à la majorité des situations que l'on peut rencontrer au cours d'un voyage dans une région où la langue est parlée. Je peux prendre part sans préparation à une conversation sur des sujets familiers ou d'intérêt personnel ou qui concernent la vie quotidienne (par exemple famille, loisirs, travail, voyage et actualité).","wo":"Man naa mucc ci li ëpp ci mbir yu man a am ci benn tukki ci gox bu ñuy wax làkk wi. Man naa bokk ci benn waxtaan bu ma waajul ci mbir yu ma miin walla yu ma bëgg (njaboot, noflaay, liggéey, tukki, xibaar)."}},{"ID":48,"CEFR":"B2","CEFRValue":3,"Area":"Interaction orale","AreaValue":2,"title":{"fr":"Je peux communiquer avec un degré de spontanéité et d'aisance qui rende possible une interaction normale avec un locuteur natif. Je peux participer activement à une conversation dans des situations familières, présenter et défendre mes opinions.","wo":"Man naa waxtaan ak gaaw ak yomb bu may may waxtaan bu yaatu ak ku làkk wi di boppam. Man naa bokk bu baax ci benn waxtaan ci mbir yu ma miin, te wone ak aar sama xalaat."}},{"ID":53,"CEFR":"C1","CEFRValue":4,"Area":"Interaction orale","AreaValue":2,"title":{"fr":"Je peux m'exprimer spontanément et couramment sans trop apparemment devoir chercher mes mots. Je peux utiliser la langue de manière souple et efficace pour des relations sociales ou professionnelles. Je peux exprimer mes idées et opinions avec précision et lier mes interventions à celles de mes interlocuteurs.","wo":"Man naa wax ak yomb te gaaw te bañ a seet sama baat. Man naa jëfandikoo làkk wi ci lu ràññeeku ngir séq-séq ak liggéey. Man naa wone sama xalaat ak sama gis-gis te boole ko ak li sama nawle di wax."}},{"ID":58,"CEFR":"C2","CEFRValue":5,"Area":"Interaction orale","AreaValue":2,"title":{"fr":"Je peux participer sans effort à toute conversation ou discussion et je suis aussi très à l'aise avec les expressions idiomatiques et les tournures courantes. Je peux m'exprimer couramment et exprimer avec précision de fines nuances de sens. En cas de difficulté, je peux faire marche arrière pour y remédier avec assez d'habileté et pour qu'elle passe presque inaperçue.","wo":"Man naa bokk ci ndaje mu ne walla waxtaan te sonnuma, te ma miin baat yu idyomatik. Man naa wax ak yomb te wone ay wuute yu ndaw ci firi. Su jafe-jafe amee, man naa ko defaraat ci lu ñu manul a gis."}},{"ID":34,"CEFR":"A1","CEFRValue":0,"Area":"Production orale","AreaValue":3,"title":{"fr":"Je peux utiliser des expressions et des phrases simples pour décrire mon lieu d'habitation et les gens que je connais.","wo":"Man naa jëfandikoo ay wax yu yomb ngir wax fu ma dëkk ak ñi ma xam."}},{"ID":39,"CEFR":"A2","CEFRValue":1,"Area":"Production orale","AreaValue":3,"title":{"fr":"Je peux utiliser une série de phrases ou d'expressions pour décrire en termes simples ma famille et d'autres gens, mes conditions de vie, ma formation et mon activité professionnelle actuelle ou récente.","wo":"Man naa jëfandikoo ay wax ngir wax ci lu yomb sama njaboot, ñeneen, sama dund, sama njàng ak sama liggéey."}},{"ID":44,"CEFR":"B1","CEFRValue":2,"Area":"Production orale","AreaValue":3,"title":{"fr":"Je peux m'exprimer de manière simple afin de raconter des expériences et des événements, mes rêves, mes espoirs ou mes buts. Je peux brièvement donner les raisons et explications de mes opinions ou projets. Je peux raconter une histoire ou l'intrigue d'un livre ou d'un film et exprimer mes réactions.","wo":"Man naa wax ci lu yomb ngir nettali ay xew-xew, sama gént, sama yaakaar walla sama pexe. Man naa joxe ci lu gàtt li tax ci sama xalaat. Man naa nettali benn téere walla filim, te wone sama yég-yég."}},{"ID":49,"CEFR":"B2","CEFRValue":3,"Area":"Production orale","AreaValue":3,"title":{"fr":"Je peux m'exprimer de façon claire et détaillée sur une grande gamme de sujets relatifs à mes centres d'intérêt. Je peux développer un point de vue sur un sujet d'actualité et expliquer les avantages et les inconvénients de différentes possibilités.","wo":"Man naa wax ci lu leer te wéral ci mbir yu bari yu jëm ci li ma bëgg. Man naa yékkati benn xalaat ci mbir bu jamono te firndeel njariñ ak ñàkk yu ay tànneef."}},{"ID":54,"CEFR":"C1","CEFRValue":4,"Area":"Production orale","AreaValue":3,"title":{"fr":"Je peux présenter des descriptions claires et détaillées de sujets complexes, en intégrant des thèmes qui leur sont liés, en développant certains points et en terminant mon intervention de façon appropriée.","wo":"Man naa wone ay melokaan yu leer te wéral ci mbir yu jafe, boole ci ay tema yu ci aju, di yokk ay wàll te jeexal sama wax ci lu jaadu."}},{"ID":59,"CEFR":"C2","CEFRValue":5,"Area":"Production orale","AreaValue":3,"title":{"fr":"Je peux présenter une description ou une argumentation claire et fluide dans un style adapté au contexte, construire une présentation de façon logique et aider mon auditeur à remarquer et à se rappeler les points importants.","wo":"Man naa wone benn melokaan walla werante bu leer te ràññeeku ci benn stiil bu jaadu, tabax sama wax ci lu jubluwu te dimbali ku may déglu mu fàttaliku li am solo."}},{"ID":35,"CEFR":"A1","CEFRValue":0,"Area":"Rédaction","AreaValue":4,"title":{"fr":"Je peux écrire une courte carte postale simple, par exemple de vacances. Je peux porter des détails personnels dans un questionnaire, inscrire par exemple mon nom, ma nationalité et mon adresse sur une fiche d'hôtel.","wo":"Man naa bind benn kart postal bu gàtt te yomb, ni ci ay vakaans. Man naa dugal ay xibaaru bopp ci benn keyit, ni sama tur, sama réew ak sama adres ci benn fiise otel."}},{"ID":40,"CEFR":"A2","CEFRValue":1,"Area":"Rédaction","AreaValue":4,"title":{"fr":"Je peux écrire des notes et messages simples et courts. Je peux écrire une lettre personnelle très simple, par exemple de remerciements.","wo":"Man naa bind ay not ak bataaxal yu yomb te gàtt. Man naa bind benn bataaxal bu yomb, ni bu gërëm."}},{"ID":45,"CEFR":"B1","CEFRValue":2,"Area":"Rédaction","AreaValue":4,"title":{"fr":"Je peux écrire un texte simple et cohérent sur des sujets familiers ou qui m'intéressent personnellement. Je peux écrire des lettres personnelles pour décrire expériences et impressions.","wo":"Man naa bind benn mbind bu yomb te dëppoo ci mbir yu ma miin walla yu ma bëgg. Man naa bind ay bataaxal ngir wax sama jaar-jaar ak sama yég-yég."}},{"ID":50,"CEFR":"B2","CEFRValue":3,"Area":"Rédaction","AreaValue":4,"title":{"fr":"Je peux écrire des textes clairs et détaillés sur une grande gamme de sujets relatifs à mes intérêts. Je peux écrire un essai ou un rapport en transmettant une information ou en exposant des raisons pour ou contre une opinion donnée. Je peux écrire des lettres qui mettent en valeur le sens que j'attribue personnellement aux événements et aux expériences.","wo":"Man naa bind ay mbind yu leer te wéral ci mbir yu bari. Man naa bind benn ese walla rapoor di joxe xibaar walla wone li ma tax a nangu walla bañ benn xalaat. Man naa bind ay bataaxal yu wone li ay xew-xew jariñ ci man."}},{"ID":55,"CEFR":"C1","CEFRValue":4,"Area":"Rédaction","AreaValue":4,"title":{"fr":"Je peux m'exprimer dans un texte clair et bien structuré et développer mon point de vue. Je peux écrire sur des sujets complexes dans une lettre, un essai ou un rapport, en soulignant les points que je juge importants. Je peux adopter un style adapté au destinataire.","wo":"Man naa bind benn mbind bu leer te tektal bu baax, te yokk sama xalaat. Man naa bind ci mbir yu jafe ci benn bataaxal, ese walla rapoor, te wone li ma jàpp ni li gën a am solo. Man naa jëfandikoo benn stiil bu jaadu ak ki may bind."}},{"ID":60,"CEFR":"C2","CEFRValue":5,"Area":"Rédaction","AreaValue":4,"title":{"fr":"Je peux écrire un texte clair, fluide et stylistiquement adapté aux circonstances. Je peux rédiger des lettres, rapports ou articles complexes, avec une construction claire permettant au lecteur d'en saisir et de mémoriser les points importants. Je peux résumer et critiquer par écrit un ouvrage professionnel ou une œuvre littéraire.","wo":"Man naa bind benn mbind bu leer, bu daw te jaadu ak jamono. Man naa bind ay bataaxal, rapoor walla artikel yu jafe, ak benn tabax bu leer bu may na ki jàng fàttaliku point yu am solo. Man naa tënk te àtte ci mbind benn liggéeyu xam-xam walla literatiir."}}];
+/* ---------- Données (30 descripteurs CECR, 7 langues) — identiques à questions.json ---------- */
+const QUESTIONS = [{"ID":31,"CEFR":"A1","CEFRValue":0,"Area":"L'écoute","AreaValue":0,"title":{"fr":"Je peux comprendre des mots familiers et des expressions très courantes au sujet de moi-même, de ma famille et de l'environnement concret et immédiat, si les gens parlent lentement et distinctement.","wo":"Man naa dégg baat yu ma miin ak wax yu yomb ci sama bopp, sama njaboot ak li ma wër, su ñu waxee ndànk te leer.","ff":"Mido waawi faamde kelme ɓooyɗe e konnguɗi heewɗi faatude e am, e ɓesngu am e taariindi am ɓadindi, so yimɓe ɓee ina kaala seeɗa-seeɗa e no laaɓiri.","srr":"Xaye ma fahaam a kalme ke a qooqaa axe o fop o faax, a yer yer a mbay, a ɓesngu fa we ci fi maay, so a xeew axe a loolaa mbalaa ndank-ndank.","mnk":"N si noo kumafalu meng keta le kafu fann maŋ, n ka faamunya n dannaŋ, n sombayaa, ani n daala-yirantee fannolu to, ni moolu kumata dooma-dooma ning jikoo le la.","joo":"Inji nikan faam bajool basumuñ ak banuñ babaji kasumay məkəti di inje, di kajoor kami ak di mupək mam, bu burok burokan ndank te malal.","snk":"N ma waaju baane kaafun su nu do kalimoonu ya moxon do n yugo, n kaawu do n daala ya, an ya ga ti kooti baane do a fetti."}},{"ID":36,"CEFR":"A2","CEFRValue":1,"Area":"L'écoute","AreaValue":0,"title":{"fr":"Je peux comprendre des expressions et un vocabulaire très fréquent relatifs à ce qui me concerne de très près (par ex. moi-même, ma famille, les achats, l'environnement proche, le travail). Je peux saisir l'essentiel d'annonces et de messages simples et clairs.","wo":"Man naa dégg wax ak baat yu bari yu jëm ci sama dund (sama bopp, njaboot, njënd, li ma wër, liggéey). Man naa jàpp li am solo ci ay yégle ak bataaxal yu yomb te leer.","ff":"Mido waawi faamde konnguɗi e kelme heewɗi jowitiiɗi e am (yeru am, ɓesngu am, soodgol, liggey). Mido waawi nanngude ko ɓuri himmude e jeeyngal e ɓataakeeji laaɓɗi.","srr":"Xaye ma fahaam a kalme ke faay axe a yer yer a mbay (a yer, ɓesngu, a sood, liggey). Xaye ma heɓ a caaco axe ci a bataaxal a yombaxe fa leer.","mnk":"N si noo kuma jannaa-kuntolu faamula meng benta n dannaŋ (n yɛrɛ, n sombaa, sanniroo, dulaa daala, dulaabaaraa). N si noo kumakan kiliŋolu faamula laafi.","joo":"Inji nikan faam babaj bayiloolak di inje (inje, kajoor kami, basood, baŋoor). Inji nikan man li am solo di bañaam bafofoor te malal.","snk":"N ma waaju kalimoonu yaginte su moxon do n yugo, n kaawu, soodo, dore, liggeeyi. N ma tinxinte me xirisu do batagoonu ya."}},{"ID":41,"CEFR":"B1","CEFRValue":2,"Area":"L'écoute","AreaValue":0,"title":{"fr":"Je peux comprendre les points essentiels quand un langage clair et standard est utilisé et s'il s'agit de sujets familiers concernant le travail, l'école, les loisirs, etc. Je peux comprendre l'essentiel de nombreuses émissions de radio ou de télévision sur l'actualité ou sur des sujets qui m'intéressent à titre personnel ou professionnel si l'on parle d'une façon relativement lente et distincte.","wo":"Man naa dégg li am solo su ñu waxee ci làkk bu leer te miin, ci mbir yu ma miin (liggéey, jàngu, noflaay…). Man naa jàpp li ëpp ci emisioŋ radio walla tele su ñu waxee ndànk te leer.","ff":"Mido waawi faamde ko ɓuri teeŋtude so tawii haala kaa ina laaɓi, tawa ko e toɓɓe ɓooyɗe ko wayi no liggey, duɗal, wellitaare. Mido faama heewde e rajo walla tele so ina haalee seɗɗa.","srr":"Xaye ma fahaam a caaco fop so a xeew axe a loolaa mbalaa fa laaɓ, ci liggey, ekol, a mbel. Xaye ma fahaam a caaco ci emisiyoŋ rajo mbaa tele so a loolaa ndank.","mnk":"N si noo fann bentaalu faamula ni kumoo tilita baake (baaraa, karambonoo, laafiyaa). N si noo telee ning raadiyoo la kobarolu faamula ni i kumata dooma-dooma.","joo":"Inji nikan faam li am solo bu burok burokan ndank ci liggey, kulekol, bapeñ. Inji nikan jàpp li am solo di rajo ak tele bu kabor kaboran ndank te malal.","snk":"N ma waaju li gilli me ni xawaare tiye liggeeyi, jangindaga, do nofaari. N ma waaju xibaaru radio do tele kooti su waari baa fetti."}},{"ID":46,"CEFR":"B2","CEFRValue":3,"Area":"L'écoute","AreaValue":0,"title":{"fr":"Je peux comprendre des conférences et des discours assez longs et même suivre une argumentation complexe si le sujet m'en est relativement familier. Je peux comprendre la plupart des émissions de télévision sur l'actualité et les informations. Je peux comprendre la plupart des films en langue standard.","wo":"Man naa dégg ay waxtaan ak diskuur yu gudd, te topp benn xalaat bu jafe su mbir mi may miin. Man naa jàpp li ëpp ci emisioŋ tele ak filim yu ñu def ci làkk bu standaar.","ff":"Mido waawi faamde haalaaji juutɗi e batuuji, e rewindaade miijooji caɗtuɗi so toɓɓere ndee ina woowi mi. Mido faama heewde e tele e kabaaruuji kam e filmuuji keewɗi.","srr":"Xaye ma fahaam a diskur yu gudda, a taqo xalaat yu ceeɓ so a mbay axe a miinaam. Xaye ma fahaam a tele, kibaruuji fa film ke.","mnk":"N si noo kuma jannaa janfulu faamula ani hakiloo la silaroo jafeeringolu, ni a benta le n fe. N si noo telee kobarolu ani sinimoolu fanbaŋ faamula.","joo":"Inji nikan faam bafuuk bajan ak wax bu gudd, te fëkku xalaat bu jafe bu miinaam. Inji nikan jàpp li bari di tele, xibaar ak filim.","snk":"N ma waaju waaso xanxe do xaranbaane yaaxande, n ma tugu xalisi su dore ya minte n do a gilli. N ma waaju tele kibaaru do filim yaaxante."}},{"ID":51,"CEFR":"C1","CEFRValue":4,"Area":"L'écoute","AreaValue":0,"title":{"fr":"Je peux comprendre un long discours même s'il n'est pas clairement structuré et que les articulations sont seulement implicites. Je peux comprendre les émissions de télévision et les films sans trop d'effort.","wo":"Man naa dégg diskuur bu gudd doonte du bu leer te seqoo yi ñungi ci biir. Man naa jàpp emisioŋ tele ak filim yu bare te bañ a sonn.","ff":"Mido waawi faamde konngol juutngol hay so tawii yuɓɓaani no moƴƴi. Mido faama porogaraamuuji tele e filmuuji tawa aɓɓaaki mi tampere mawnde.","srr":"Xaye ma fahaam a diskur yu gudda fa xaye a yombaxe mbaaxee fa leer. Xaye ma fahaam tele fa film a ceeɓ a tami sonnaaxe.","mnk":"N si noo kuma jaŋolu fanbaŋ faamula hali ni a maŋ tilindi baake. N si noo telee la borolu ani sinimoolu faamula bila sonkoraŋo teŋ.","joo":"Inji nikan faam burok bu gudd doonte bufeexul mbëñ. Inji nikan man tele ak filim te inji saawul.","snk":"N ma waaju xarani xanxe ya do a nta fetti ti kooti. N ma waaju tele xibaaru do filim me xonno nta n doli naxanu."}},{"ID":56,"CEFR":"C2","CEFRValue":5,"Area":"L'écoute","AreaValue":0,"title":{"fr":"Je n'ai aucune difficulté à comprendre le langage oral, que ce soit dans les conditions du direct ou dans les médias et quand on parle vite, à condition d'avoir du temps pour me familiariser avec un accent particulier.","wo":"Amuma benn jafe-jafe ci dégg wax, muy ci direk walla ci medià, te su ñu waxee gaaw, su ma amee tuuti jamono ngir miin aksaŋ bi.","ff":"Alaa ko caɗtani mi e faamde haala, so tawii ko e jaayɗe walla yeewtere e yeeso am hay so ina yaawi, so tawii tan mi heɓii waktu woowde daande maɓɓe.","srr":"O ɗon caɗtaniim fee ci a fahaam a caaco, ci direct mbaa ci media so a loolaa kat-kat, so ma heɓ a jamano o miinaaksen axe.","mnk":"Jafeeyaa baalu te n bulu kumakanolu faamula, hali tele to baa mooma to, ni i tarita le ka kuma, n maŋ foyi sotobaari fo ka a jikoo dondima faamula.","joo":"Inji bano jafe-jafe ci burok, di direk mba media bu burokan gaaw, bu man heɓee wakati ngir miin aksan bi.","snk":"Soli nta n ga n ma xonno waaju, a ni tinxinte walla medias do a ti kooti baa waayi, so n da wakkati soto n ka daande ya min."}},{"ID":32,"CEFR":"A1","CEFRValue":0,"Area":"Lecture","AreaValue":1,"title":{"fr":"Je peux comprendre des noms familiers, des mots ainsi que des phrases très simples, par exemple dans des annonces, des affiches ou des catalogues.","wo":"Man naa jàng tur yu ma miin, ay baat ak mbind yu yomb, ni ci ay yégle, ay afiche walla ay katalog.","ff":"Mido waawi janngude inɗe ɓooyɗe, kelme e konnguɗi koyɗi, yeru e nder jeeyngal, afiisuuji walla saggitorde geɗe.","srr":"Xaye ma jàng a tiri ke miinoogu, a kalme ke fa mbind a yombaxe, ci afiis fa katalog.","mnk":"N si noo too kiliŋolu, kumafalu ani kumakantolu jannoo karaŋ naani kibaro-safoolu, afiisilu to.","joo":"Inji nikan jàng kanuk kasumuñ, babaj ak mbind mam yomban, di afiis ak katalog.","snk":"N ma waaju xaran togonu minte, kalimoonu do safe kooti, afisoonu do xibar-kitabu ya."}},{"ID":37,"CEFR":"A2","CEFRValue":1,"Area":"Lecture","AreaValue":1,"title":{"fr":"Je peux lire des textes courts très simples. Je peux trouver une information particulière prévisible dans des documents courants comme les publicités, les prospectus, les menus et les horaires et je peux comprendre des lettres personnelles courtes et simples.","wo":"Man naa jàng ay mbind yu gàtt te yomb. Man naa gis xibaar bu ma soxla ci ay mbind ni reklaam, meññ ak orëe, te man naa jàng bataaxal yu gàtt te yomb.","ff":"Mido waawi janngude binndi juutɗi koyɗi. Mido heɓa kabaaru keertiiɗo e nder defte yeeyirɗe, kaye nyaamdu e waktuuji, mido faama ɓataakeeji juutɗi.","srr":"Xaye ma jàng a mbind yu ceeɓ a yombaxe. Xaye ma heɓ a kibaar ci mbind ke a reklaam, meññ fa waktuuji.","mnk":"N si noo sɛbɛ jannaa dooma karaŋ. N si noo kobaroo foitandi sɛbɛ-luŋolu to jannoo reklaamoolu, meenulu ani waati-safoolu to.","joo":"Inji nikan jàng mbind yu gàtt te yomb. Inji nikan heɓ kabor ci reklaam, meni ak waktuuji.","snk":"N ma waaju xaran safe xanxantoo kooti. N ma tiŋo soto safeenu xarani ya xara reklaamu, meni do waati-kitabu ya."}},{"ID":42,"CEFR":"B1","CEFRValue":2,"Area":"Lecture","AreaValue":1,"title":{"fr":"Je peux comprendre des textes rédigés essentiellement dans une langue courante ou relative à mon travail. Je peux comprendre la description d'événements, l'expression de sentiments et de souhaits dans des lettres personnelles.","wo":"Man naa jàng ay mbind yu ñu bind ci làkk bu miin walla bu jëm ci sama liggéey. Man naa jàpp melokaanu xew-xew, yég-yég ak bëgg-bëgg ci ay bataaxal.","ff":"Mido waawi faamde binndi ɓurɗi winndeede e ɗemngal heewngal walla jowitiingal e liggey am. Mido faama geɗe kewɗe e ɓataakeeji ɓesngu.","srr":"Xaye ma jàng a mbind ke a windaaxe ci a kalme ke ci liggey am. Xaye ma fahaam a caaco ci xew-xew fa a bataaxal.","mnk":"N si noo sɛbɛ safoolu karaŋ meng kumata baara-kumoo la. N si noo xew-xewolu faamula ani laafiroolu bataxoolu to.","joo":"Inji nikan jàng mbind yu bind di làkk bu miin mba liggey. Inji nikan faam melokaanu xew-xew di bataaxal.","snk":"N ma waaju xaran safeenu binne da liggeeyi dore ya. N ma kibaaru do tinxinte faamula bataxeenu ya."}},{"ID":47,"CEFR":"B2","CEFRValue":3,"Area":"Lecture","AreaValue":1,"title":{"fr":"Je peux lire des articles et des rapports sur des questions contemporaines dans lesquels les auteurs adoptent une attitude particulière ou un certain point de vue. Je peux comprendre un texte littéraire contemporain en prose.","wo":"Man naa jàng ay artikel ak rapoor ci mbir yu jamono ci lu am xalaat bu wóor. Man naa jàpp benn mbind bu literatiir bu jamono.","ff":"Mido waawi janngude binndanɗe e ciimtol geɗe jooni ɗo winndooɓe ɓee ngollii miijooji maɓɓe. Mido faama defte binndi jooni.","srr":"Xaye ma jàng a artikel fa rapor ci jamano axe. Xaye ma fahaam a mbind literatur.","mnk":"N si noo kibaro-sɛbɛlu ani raapoorolu karaŋ meng be jamano-kobarolu kamma la. N si noo leetarature sɛbɛ karaŋ.","joo":"Inji nikan jàng artikel ak rapoor di jamano jooni. Inji nikan faam mbind bu literatuur.","snk":"N ma waaju xaran artikeli do rapooru jamano ke xonno. N ma faamula kitabu xarani fetti."}},{"ID":52,"CEFR":"C1","CEFRValue":4,"Area":"Lecture","AreaValue":1,"title":{"fr":"Je peux comprendre des textes factuels ou littéraires longs et complexes et en apprécier les différences de style. Je peux comprendre des articles spécialisés et de longues instructions techniques même lorsqu'ils ne sont pas en relation avec mon domaine.","wo":"Man naa jàng ay mbind yu gudd te jafe, di jàpp seen wuute ci melokaan. Man naa jàpp ay artikel yu xóot ak ndigal yu gudd yu teknik, doonte bokkuñu ci sama wàll.","ff":"Mido waawi faamde binndi juutɗi caɗtuɗi, e seertinde laabi maɓɓe winndugol. Mido faama binndanɗe karallaagal juutɗi hay so jeyaaka e fannu am.","srr":"Xaye ma jàng a mbind yu gudda yu ceeɓ a jafe. Xaye ma fahaam a artikel teknik xaye a mbay axe a ɗom liggey am.","mnk":"N si noo sɛbɛ jaŋ baalu karaŋ ani ka i tontoo suuti. N si noo teknik sɛbɛ jannaa baalu faamula hali ni a maŋ benta n la baaraa to.","joo":"Inji nikan jàng mbind yu gudd te jafe. Inji nikan faam artikel teknik yu gudd bu bokkut di fannu kami.","snk":"N ma waaju xaran safeenu xanxantoo do caɗtuɗi. N ma faamula teknik xarani xanxe ya minte nta n liggeeyi kooti."}},{"ID":57,"CEFR":"C2","CEFRValue":5,"Area":"Lecture","AreaValue":1,"title":{"fr":"Je peux lire sans effort tout type de texte, même abstrait ou complexe quant au fond ou à la forme, par exemple un manuel, un article spécialisé ou une œuvre littéraire.","wo":"Man naa jàng lu yomb ay xeeti mbind yépp, doonte dañu jafe walla xóot ci seen tënk walla melokaan, ni ci benn téere, benn artikel bu xóot walla benn liggéeyu literatiir.","ff":"Mido waawi janngude kala no binndol wayi tawa mi tampani ɗum, hay so ina tiiɗi e nder e e yaasi, yeru deftere sariya, deftere ganndal walla deftere binndi.","srr":"Xaye ma jàng a mbind ke fop te o tami sonnaaxe, a tere xaye jafe-jafe ci biir.","mnk":"N si noo sɛbɛ suwo-o-suwo karaŋ bila sonkoraŋo teŋ, hali ni a jafeta le hakiloo la, a te kaye baara, walla leetaraturoo.","joo":"Inji nikan jàng xeet mbind yépp te inji saawul, bu jafee ci tënk ak xalaat, ni téere mba literatuur.","snk":"N ma waaju xaran safeenu su bila xonno axanu, a ni daande caɗtu ya walla literatur kitabu."}},{"ID":33,"CEFR":"A1","CEFRValue":0,"Area":"Interaction orale","AreaValue":2,"title":{"fr":"Je peux communiquer, de façon simple, à condition que l'interlocuteur soit disposé à répéter ou à reformuler ses phrases plus lentement et à m'aider à formuler ce que j'essaie de dire. Je peux poser des questions simples sur des sujets familiers ou sur ce dont j'ai immédiatement besoin, ainsi que répondre à de telles questions.","wo":"Man naa waxtaan ci lu yomb, su nit ki nangoo baamtu walla waxaat ndànk te dimbali ma. Man naa laaj ay laaj yu yomb ci mbir yu ma miin walla li ma soxla, te tontu ci laaj yu ni mel.","ff":"Mido waawi yeewtidde no hoyi so tawii gano am oo ina yaafi haalde seeɗa-seeɗa e wallitde mi. Mido waawi naamnaade geɗe koyɗe e jaabaade ɗum.","srr":"Xaye ma waxtaan a yombaxe, so o ki axe a nangoo a loolaa ndank te mbalmaam. Xaye ma nam a naam koyi te jaaboo.","mnk":"N si noo baroo ke laafi ni moolu be sonna ka a foyi dooma-dooma ka n dɛma. N si noo ñininkaroo kiliŋolu ke ani ka i jaabi.","joo":"Inji nikan waxtaan a yomban, bu anano anango a waxaat ndank te kobarom. Inji nikan kon buroki te tontu.","snk":"N ma waaju baaru safe kooti n moxon ga sonna ka a fotti do a n doli. N ma maxinbaani kooti tege do a jaabu."}},{"ID":38,"CEFR":"A2","CEFRValue":1,"Area":"Interaction orale","AreaValue":2,"title":{"fr":"Je peux communiquer lors de tâches simples et habituelles ne demandant qu'un échange d'informations simple et direct sur des sujets et des activités familiers. Je peux avoir des échanges très brefs même si, en règle générale, je ne comprends pas assez pour poursuivre une conversation.","wo":"Man naa waxtaan ci mbir yu yomb te miin yu laaj rekk benn wexeltu xibaar bu yomb. Man naa def ay wexeltu yu gàtt, doonte du ma dégg lu doy ngir wéyal waxtaan bi.","ff":"Mido waawi yeewtidde e golle koyɗe ɗe mbaɗdaani e naamnaade kabaaruuji juutɗi. Mido waawi waɗde yeewtere famɗunde hay so mi waawaa jokkude ɗum.","srr":"Xaye ma waxtaan ci liggey koyi so a fahaam a kibaar koyi. Xaye ma fi a waxtaan a ceeɓ xaye ma wéyale.","mnk":"N si noo baroo kiliŋ dooma ke baara-kamma to meng benta kobaroo doola kamma la. N si noo baroo kuntolu ke hali n mang noo ka a janyindi.","joo":"Inji nikan waxtaan ci liggey yomban bu laajut xibaar yu gudd. Inji nikan kabor ndank doonte faamuma lu doy ngir wéyal.","snk":"N ma waaju baaru liggeeyi kooti me nta kibaaru xanxe maxinba. N ma kooti baaru hali n ma nta waaju a dooxindi."}},{"ID":43,"CEFR":"B1","CEFRValue":2,"Area":"Interaction orale","AreaValue":2,"title":{"fr":"Je peux faire face à la majorité des situations que l'on peut rencontrer au cours d'un voyage dans une région où la langue est parlée. Je peux prendre part sans préparation à une conversation sur des sujets familiers ou d'intérêt personnel ou qui concernent la vie quotidienne (par exemple famille, loisirs, travail, voyage et actualité).","wo":"Man naa mucc ci li ëpp ci mbir yu man a am ci benn tukki ci gox bu ñuy wax làkk wi. Man naa bokk ci benn waxtaan bu ma waajul ci mbir yu ma miin walla yu ma bëgg (njaboot, noflaay, liggéey, tukki, xibaar).","ff":"Mido waawi daggude e nder jahgol ɗo ɗemngal ngal haalataa. Mido waawi tawtoreede yeewtere tawa mi heblaaki e toɓɓe ɗe mi woowi (ɓesngu, liggey, jaŋde, kabaaruuji).","srr":"Xaye ma mucc ci a tukki ke o gox o loolaa làkk axe. Xaye ma ɓoox ci waxtaan te o waajul (ɓesngu, liggey, kibaar).","mnk":"N si noo n yɛrɛ sutura taamoo to dulaa meng ka nin kumoo fo. N si noo baroo bila daa-jannayaŋo to ka kuma sombaa, baaraa, kobarolu fann maŋ.","joo":"Inji nikan heɓ yoon ci tukki fu kaloolan làkk bu. Inji nikan bokk di waxtaan te waajuma (kajoor, liggey, xibaar).","snk":"N ma waaju baari soto xanbaani to a ga a dore tiye. N ma waaju xawaare tugu bila xonno gilli (kaawu, liggeeyi, xibaaru)."}},{"ID":48,"CEFR":"B2","CEFRValue":3,"Area":"Interaction orale","AreaValue":2,"title":{"fr":"Je peux communiquer avec un degré de spontanéité et d'aisance qui rende possible une interaction normale avec un locuteur natif. Je peux participer activement à une conversation dans des situations familières, présenter et défendre mes opinions.","wo":"Man naa waxtaan ak gaaw ak yomb bu may may waxtaan bu yaatu ak ku làkk wi di boppam. Man naa bokk bu baax ci benn waxtaan ci mbir yu ma miin, te wone ak aar sama xalaat.","ff":"Mido waawi yeewtidde no yaawi e no hoyi e neɗɗo jeyaaɗo e ɗemngal ngal. Mido waawi ardaade miijo am e daranaade ɗum e nder yeewtere.","srr":"Xaye ma waxtaan a yaawaxe fa yombaxe fa o ki a làkk axe a mbope. Xaye ma ɓoox te darnaam xalaat am.","mnk":"N si noo kuma baake jikoo la ning daala-kumalaa jannaa le be kuma la. N si noo baroo ke baake ka n la hakiloo dantaŋ.","joo":"Inji nikan waxtaan a yomban ak a gaawan ak ku làkk bi bajan boppam. Inji nikan bokk te xalaat kami aaro.","snk":"N ma waaju baaru moxon me dore tiye n ya waayi. N ma doli waaso ke tugu do n da miijo gilli yaari."}},{"ID":53,"CEFR":"C1","CEFRValue":4,"Area":"Interaction orale","AreaValue":2,"title":{"fr":"Je peux m'exprimer spontanément et couramment sans trop apparemment devoir chercher mes mots. Je peux utiliser la langue de manière souple et efficace pour des relations sociales ou professionnelles. Je peux exprimer mes idées et opinions avec précision et lier mes interventions à celles de mes interlocuteurs.","wo":"Man naa wax ak yomb te gaaw te bañ a seet sama baat. Man naa jëfandikoo làkk wi ci lu ràññeeku ngir séq-séq ak liggéey. Man naa wone sama xalaat ak sama gis-gis te boole ko ak li sama nawle di wax.","ff":"Mido waawi haalde e no yaawiri tawa mi ɗaɓɓaani kelme. Mido waawi naftoraade ɗemngal ngal e nder nguurndam am e golle am. Mido fawa miijooji am dow ko woɗɓe kaali.","srr":"Xaye ma lool a yaawaxe te seetaam kalme. Xaye ma naftora làkk axe ci nguurndam fa liggey. Xaye ma fow xalaat am ci ke weene a loolaa.","mnk":"N si noo kuma laafi bila kumafa-ñininiŋ teŋ. N si noo kumoo kɛ baara-dulaa to ani moolu kante. N si noo n hakiloo fankanta kiliŋ.","joo":"Inji nikan wax a yomban te kanoomut babaj. Inji nikan kabor làkk bi di dund ak liggey kami. Inji nikan tey xalaat kami ci li bafoforan.","snk":"N ma waaju kuma fetti bila kalimoonu yitinde. N ma tinxinte me naftore dore ya moxon do liggeeyi ya. N ma n miijo do moxon yitinde."}},{"ID":58,"CEFR":"C2","CEFRValue":5,"Area":"Interaction orale","AreaValue":2,"title":{"fr":"Je peux participer sans effort à toute conversation ou discussion et je suis aussi très à l'aise avec les expressions idiomatiques et les tournures courantes. Je peux m'exprimer couramment et exprimer avec précision de fines nuances de sens. En cas de difficulté, je peux faire marche arrière pour y remédier avec assez d'habileté et pour qu'elle passe presque inaperçue.","wo":"Man naa bokk ci ndaje mu ne walla waxtaan te sonnuma, te ma miin baat yu idyomatik. Man naa wax ak yomb te wone ay wuute yu ndaw ci firi. Su jafe-jafe amee, man naa ko defaraat ci lu ñu manul a gis.","ff":"Mido waawi tawtoreede kala yeewtere tawa mi tampaani, mido miini konnguɗi ɓurɗi lollude. Mido haala no moƴƴi haa bayyina maanaaji laaɓɗi. So caɗeele ngarii, mido waawi artirde haala am tawa hay gooto teskaaki.","srr":"Xaye ma ɓoox ci waxtaan fop o tami sonnaaxe, te a miinaam a kalme ke faay. Xaye ma lool no faayi te a fahaam a caaco fop.","mnk":"N si noo baroo suwo-o-suwo ke bila sonkoraŋo teŋ, n be kumatendi laafiroo la. Ni jafeeyaa naata, n si a laasiri bila moolu maŋ a kiliŋ faamu.","joo":"Inji nikan bokk di waxtaan fop te saawuma, te miinumi babaj bu xareñ. Bu jafe-jafe naate, inji nikan defaraat te anano gisuut.","snk":"N ma waaju baari kooti tugu bila xonno axanu, n ma daande dore su xawaari. Soli ga na, n ma a dooxindi bila moxon a faamula."}},{"ID":34,"CEFR":"A1","CEFRValue":0,"Area":"Production orale","AreaValue":3,"title":{"fr":"Je peux utiliser des expressions et des phrases simples pour décrire mon lieu d'habitation et les gens que je connais.","wo":"Man naa jëfandikoo ay wax yu yomb ngir wax fu ma dëkk ak ñi ma xam.","ff":"Mido waawi huutoraade konnguɗi koyɗi ngir faccirde ɗo ngon-mi e yimɓe ɓe nganndu-mi.","srr":"Xaye ma naftora a kalme koyi ngir lool fo ma daawaa fa we miinoogu.","mnk":"N si noo kuma jannaa dooma fo ka n dulaa ani moolu meng n ka i lɔŋ fankanta.","joo":"Inji nikan wax babaj yomban ngir wax fu inji dëkku ak anano me xamumi.","snk":"N ma waaju kalimoonu kooti tiye ka n dooxu dulaa do moxon minte n a londi yaari."}},{"ID":39,"CEFR":"A2","CEFRValue":1,"Area":"Production orale","AreaValue":3,"title":{"fr":"Je peux utiliser une série de phrases ou d'expressions pour décrire en termes simples ma famille et d'autres gens, mes conditions de vie, ma formation et mon activité professionnelle actuelle ou récente.","wo":"Man naa jëfandikoo ay wax ngir wax ci lu yomb sama njaboot, ñeneen, sama dund, sama njàng ak sama liggéey.","ff":"Mido waawi haalde konnguɗi seeɗa ngir faccirde ɓesngu am, yimɓe woɗɓe, no nguurru-mi, jaŋde am e liggey am jooni.","srr":"Xaye ma naftora a kalme ngir lool a ɓesngu am, weene, a nguurndam am, ekol fa liggey am.","mnk":"N si noo kuma-jannaa kuntolu fo ka n sombaa, moowolu, n la ŋooroo, n la karambaloo ani baaraa fankanta.","joo":"Inji nikan wax ngir jéñ ci lu yomb kajoor kami, anano arik, dund kami, ekol ak liggey.","snk":"N ma waaju kuma kooti fetti ka n kaawu, moxon wuro, n dundo, jangindaga do n liggeeyi fankanta."}},{"ID":44,"CEFR":"B1","CEFRValue":2,"Area":"Production orale","AreaValue":3,"title":{"fr":"Je peux m'exprimer de manière simple afin de raconter des expériences et des événements, mes rêves, mes espoirs ou mes buts. Je peux brièvement donner les raisons et explications de mes opinions ou projets. Je peux raconter une histoire ou l'intrigue d'un livre ou d'un film et exprimer mes réactions.","wo":"Man naa wax ci lu yomb ngir nettali ay xew-xew, sama gént, sama yaakaar walla sama pexe. Man naa joxe ci lu gàtt li tax ci sama xalaat. Man naa nettali benn téere walla filim, te wone sama yég-yég.","ff":"Mido waawi haalde no hoyi ngir faccirde geɗe kewɗe, koyɗi am, yaakaare am e paandaale am. Mido waawi faccirde sabaabu miijooji am. Mido waawi haalde daartol deftere walla filmu.","srr":"Xaye ma lool a yombaxe ngir netali a xew-xew, a koyɗi, a yaakaar fa paandaale. Xaye ma netali a tere mbaa film.","mnk":"N si noo kuma laafi ka kobarolu, n la sibiroolu, n la jikoolu fo. N si noo kitaaboo la kobaroo fo ani n hakiloo fannaŋ.","joo":"Inji nikan wax a yomban ngir nettali xew-xew, gént kami, yaakaar mba pexe. Inji nikan nettali téere mba filim.","snk":"N ma waaju kuma kooti fetti ka daartolu, suxuno, yaakaare do paandaale fankanta. N ma waaju xarani kitabu walla filim nettali."}},{"ID":49,"CEFR":"B2","CEFRValue":3,"Area":"Production orale","AreaValue":3,"title":{"fr":"Je peux m'exprimer de façon claire et détaillée sur une grande gamme de sujets relatifs à mes centres d'intérêt. Je peux développer un point de vue sur un sujet d'actualité et expliquer les avantages et les inconvénients de différentes possibilités.","wo":"Man naa wax ci lu leer te wéral ci mbir yu bari yu jëm ci li ma bëgg. Man naa yékkati benn xalaat ci mbir bu jamono te firndeel njariñ ak ñàkk yu ay tànneef.","ff":"Mido waawi haalde no laaɓiri e nder geɗe keewɗe ɗe njiɗ-mi. Mido waawi addude miijo dow geɗe jooni e hollude ko moƴƴi e ko boni.","srr":"Xaye ma lool a laaɓaxe ci mbay axe miinoogu. Xaye ma adda xalaat ci jamano axe te wone a moƴƴaxe fa bonaxe.","mnk":"N si noo kuma jannaa laafi baake meng benta n la laafiroolu la. N si noo hakiloo dantaŋ ka a beteyaa ani a jawuyaa fankanta.","joo":"Inji nikan wax a laaɓan ci yépp li inji bëggu. Inji nikan wax xalaat ci jamano te wone li bonu ak li ñaawu.","snk":"N ma waaju kuma fetti a laaɓi tinxinte me n bëggu yaari. N ma miijo yaari ka nafe do boore fankanta."}},{"ID":54,"CEFR":"C1","CEFRValue":4,"Area":"Production orale","AreaValue":3,"title":{"fr":"Je peux présenter des descriptions claires et détaillées de sujets complexes, en intégrant des thèmes qui leur sont liés, en développant certains points et en terminant mon intervention de façon appropriée.","wo":"Man naa wone ay melokaan yu leer te wéral ci mbir yu jafe, boole ci ay tema yu ci aju, di yokk ay wàll te jeexal sama wax ci lu jaadu.","ff":"Mido waawi faccirde no laaɓiri toɓɓe caɗtuɗe, e ɓeydude heen toɓɓe goɗɗe jowitiiɗe heen, e timminde konngol am no haaniri.","srr":"Xaye ma wone a melokaan yu laaɓa ci mbay yu ceeɓ, te timminde konngol am no haani.","mnk":"N si noo fann jafeeringolu fankanta baake, ka fannu kotoolu londi a to, ani ka n la kumoo labaŋo betendi.","joo":"Inji nikan jéñ melokaan yu laaɓan ci mbir yu jafe, te timbal wax kami no jaaduran.","snk":"N ma waaju tinxinte fetti fankanta toɓɓe caɗtuɗi ya, ka a doli moxon to do a labanno baane."}},{"ID":59,"CEFR":"C2","CEFRValue":5,"Area":"Production orale","AreaValue":3,"title":{"fr":"Je peux présenter une description ou une argumentation claire et fluide dans un style adapté au contexte, construire une présentation de façon logique et aider mon auditeur à remarquer et à se rappeler les points importants.","wo":"Man naa wone benn melokaan walla werante bu leer te ràññeeku ci benn stiil bu jaadu, tabax sama wax ci lu jubluwu te dimbali ku may déglu mu fàttaliku li am solo.","ff":"Mido waawi addude ciimtol walla hujja laaɓɗo e laawol peewngol, yuɓɓinde haala am no haaniri ngir wallitde hettiyankooɓe ɓee teskaade ko ɓuri teeŋtude.","srr":"Xaye ma wone a hujja laaɓaxe te yuɓɓinde haala am ngir wallitde we a hettiye axe a mbanq.","mnk":"N si noo daliililu laasiri jikoo la meng ka dulaa sotondi, ka n la kumoo tilindi ka n lamandilaalu dɛma i ka fann baalu lɔŋ.","joo":"Inji nikan wone daliil bu laaɓan te ràññeeku, te dimbali ku may kanano mu jàpp li am solo.","snk":"N ma waaju dalilu fetti a laaɓi fankanta, ka n kuma yuɓɓinde ka hettiyankoogu doli i ka fann baane yaari."}},{"ID":35,"CEFR":"A1","CEFRValue":0,"Area":"Rédaction","AreaValue":4,"title":{"fr":"Je peux écrire une courte carte postale simple, par exemple de vacances. Je peux porter des détails personnels dans un questionnaire, inscrire par exemple mon nom, ma nationalité et mon adresse sur une fiche d'hôtel.","wo":"Man naa bind benn kart postal bu gàtt te yomb, ni ci ay vakaans. Man naa dugal ay xibaaru bopp ci benn keyit, ni sama tur, sama réew ak sama adres ci benn fiise otel.","ff":"Mido waawi winndude ɓataake kartal juutngol hoyngol, yeru e nder vakaas. Mido waawi winndude innde am, leydi am e nder kaye otel.","srr":"Xaye ma wind a karte postal a ceeɓ, ci vakaas. Xaye ma wind a tiri am, a leydi am ci kaye otel.","mnk":"N si noo bataxoo jannaa dooma sɛbɛ, jannoo vakaas to. N si noo n too, n la bankoo sɛbɛ otel kaye to.","joo":"Inji nikan bind kart postal bu gàtt, ni di vakaans. Inji nikan bind kanuk kami, réew kami ci kaye otel.","snk":"N ma waaju safe kart postal kooti binne, vakaas ya. N ma n togo, n leydi safe otel kaye ya."}},{"ID":40,"CEFR":"A2","CEFRValue":1,"Area":"Rédaction","AreaValue":4,"title":{"fr":"Je peux écrire des notes et messages simples et courts. Je peux écrire une lettre personnelle très simple, par exemple de remerciements.","wo":"Man naa bind ay not ak bataaxal yu yomb te gàtt. Man naa bind benn bataaxal bu yomb, ni bu gërëm.","ff":"Mido waawi winndude ɓataakeeji koyɗi juutɗi. Mido waawi winndude ɓataake yettoore.","srr":"Xaye ma wind a not fa bataaxal yu ceeɓ. Xaye ma wind a bataaxal o gërëm.","mnk":"N si noo batakoo jannaa dooma sɛbɛ. N si noo barikadaa bataxoo sɛbɛ.","joo":"Inji nikan bind bataaxal yu yomb te gàtt. Inji nikan bind bataaxal bu gërëm.","snk":"N ma waaju safe xanxantoo kooti binne. N ma safe gërëm bataxe binne."}},{"ID":45,"CEFR":"B1","CEFRValue":2,"Area":"Rédaction","AreaValue":4,"title":{"fr":"Je peux écrire un texte simple et cohérent sur des sujets familiers ou qui m'intéressent personnellement. Je peux écrire des lettres personnelles pour décrire expériences et impressions.","wo":"Man naa bind benn mbind bu yomb te dëppoo ci mbir yu ma miin walla yu ma bëgg. Man naa bind ay bataaxal ngir wax sama jaar-jaar ak sama yég-yég.","ff":"Mido waawi winndude binndol koyngol yuɓɓungol e toɓɓe ɗe mi woowi. Mido waawi winndude ɓataakeeji ngir faccirde ko nji-mi e ko kumpiti-mi.","srr":"Xaye ma wind a mbind a yombaxe ci mbay axe miinoogu. Xaye ma wind a bataaxal ci ke a gisuuma.","mnk":"N si noo sɛbɛ kiliŋ dooma sɛbɛ fannolu la meng benta n ma. N si noo bataxoolu sɛbɛ ka n la silaroolu fo.","joo":"Inji nikan bind mbind bu yomb te dëppoo ci mbir yu bëggumi. Inji nikan bind bataaxal ngir wax jaar-jaar kami.","snk":"N ma waaju safe kooti binne tinxinte me n moxon ya. N ma bataxeenu safe ka n jaar-jaaru fankanta."}},{"ID":50,"CEFR":"B2","CEFRValue":3,"Area":"Rédaction","AreaValue":4,"title":{"fr":"Je peux écrire des textes clairs et détaillés sur une grande gamme de sujets relatifs à mes intérêts. Je peux écrire un essai ou un rapport en transmettant une information ou en exposant des raisons pour ou contre une opinion donnée. Je peux écrire des lettres qui mettent en valeur le sens que j'attribue personnellement aux événements et aux expériences.","wo":"Man naa bind ay mbind yu leer te wéral ci mbir yu bari. Man naa bind benn ese walla rapoor di joxe xibaar walla wone li ma tax a nangu walla bañ benn xalaat. Man naa bind ay bataaxal yu wone li ay xew-xew jariñ ci man.","ff":"Mido waawi winndude binndanɗe laaɓɗe e toɓɓe keewɗe. Mido waawi winndude ciimtol hollirngol daliiluuji jaɓgol walla salagol miijo. Mido waawi winndude ɓataakeeji hollitooji himme kewuuji.","srr":"Xaye ma wind a mbind yu laaɓa ci mbay yu bari. Xaye ma wind a rapor te wone daliil jaɓgol mbaa salagol.","mnk":"N si noo sɛbɛ tilindiŋ baalu sɛbɛ fann jamano kamma la. N si noo raapoor sɛbɛ ka daliililu dantaŋ kankuran ka hakiloo sabari baŋ.","joo":"Inji nikan bind mbind yu laaɓan ci mbir yu bari. Inji nikan bind rapoor te wone daliil ngir nangu mba bañ.","snk":"N ma waaju safe fetti a laaɓi fankanta. N ma rapoor safe ka daliilu wone a nangu walla a bañi kooti."}},{"ID":55,"CEFR":"C1","CEFRValue":4,"Area":"Rédaction","AreaValue":4,"title":{"fr":"Je peux m'exprimer dans un texte clair et bien structuré et développer mon point de vue. Je peux écrire sur des sujets complexes dans une lettre, un essai ou un rapport, en soulignant les points que je juge importants. Je peux adopter un style adapté au destinataire.","wo":"Man naa bind benn mbind bu leer te tektal bu baax, te yokk sama xalaat. Man naa bind ci mbir yu jafe ci benn bataaxal, ese walla rapoor, te wone li ma jàpp ni li gën a am solo. Man naa jëfandikoo benn stiil bu jaadu ak ki may bind.","ff":"Mido waawi winndude binndol laaɓngol yuɓɓungol no moƴƴi ngir yaltinde miijo am. Mido waawi winndude toɓɓe tiiɗɗe e nder ɓataake walla ciimtol, e suɓaade laawol binndol potngol e joomum.","srr":"Xaye ma wind a mbind yu laaɓa yu yuɓɓu ngir fow xalaat am. Xaye ma wind mbay yu tiiɗi ci bataaxal mbaa rapor.","mnk":"N si noo sɛbɛ jannaa tilindimma sɛbɛ ka n hakiloo dantaŋ. N si noo fann jafeeringolu sɛbɛ bataxoo walla raapoor to.","joo":"Inji nikan bind mbind bu laaɓan te tektal bu baax, ngir wone xalaat kami ci bataaxal mba rapoor.","snk":"N ma waaju safe fetti yuɓɓu ka n miijo yaari. N ma safe toɓɓe tiiɗɗi binne bataxe walla rapoor ya."}},{"ID":60,"CEFR":"C2","CEFRValue":5,"Area":"Rédaction","AreaValue":4,"title":{"fr":"Je peux écrire un texte clair, fluide et stylistiquement adapté aux circonstances. Je peux rédiger des lettres, rapports ou articles complexes, avec une construction claire permettant au lecteur d'en saisir et de mémoriser les points importants. Je peux résumer et critiquer par écrit un ouvrage professionnel ou une œuvre littéraire.","wo":"Man naa bind benn mbind bu leer, bu daw te jaadu ak jamono. Man naa bind ay bataaxal, rapoor walla artikel yu jafe, ak benn tabax bu leer bu may na ki jàng fàttaliku point yu am solo. Man naa tënk te àtte ci mbind benn liggéeyu xam-xam walla literatiir.","ff":"Mido waawi winndude binndol laaɓngol, ɓoɓɓoongol potngol e ngonka kaa. Mido waawi winndude ɓataakeeji, ciimti walla binndanɗe caɗtuɗe laaɓɗe. Mido waawi heɓrude e ƴeewtaade e binndol deftere karallaagal walla deftere binndi.","srr":"Xaye ma wind a mbind yu laaɓa yu fowtukee jamano axe. Xaye ma wind a bataaxal, rapor mba artikel yu ceeɓ. Xaye ma tënk te àtte tere xam-xam.","mnk":"N si noo sɛbɛ kiliŋ laafi tilindimma sɛbɛ meng benta waatoo la. N si noo bataxoolu, raapoorolu sɛbɛ meng jafeeta te a tilinta. N si noo kitaaboo la kobaroo tënk ka a hakiloo fo.","joo":"Inji nikan bind mbind bu laaɓan te jaadu ak jamono. Inji nikan bind bataaxal, rapoor mba artikel yu jafe. Inji nikan tënk te àtte téere xam-xam mba literatuur.","snk":"N ma waaju safe fetti yuɓɓu a laaɓi binne. N ma bataxeenu, rapooru walla artikeli caɗtuɗi safe. N ma waaju kitabu xam-xam tënk ka a criticé safe ya."}}];
 
-/* ---------- i18n ---------- */
+/* ---------- i18n : interface complète ---------- */
 let lang = 'fr';
 const T = {
  fr:{
+  notice:"Ce test évalue toujours votre niveau en français, dans la langue d'interface de votre choix.",
   p_eyebrow:"Bienvenue", p_title:"Avant de commencer",
   p_sub:"Quelques informations pour personnaliser votre parcours.",
   f_name:"Prénom ou pseudonyme", f_name_ph:"Votre prénom",
@@ -159,18 +177,19 @@ const T = {
   p_continue:"Continuer",
   s_eyebrow:"Auto-évaluation", s_title:"Quel est votre niveau de français ?",
   s_sub:"Une série de courtes affirmations « Je peux… » pour situer votre niveau selon les six niveaux du CECR (A1 à C2).",
-  s_q:"Pour commencer, comment évaluez-vous globalement votre niveau ?",
+  s_q:"Pour commencer, comment évaluez-vous globalement votre niveau en français ?",
   s_low:"Pas très bon", s_high:"Très bon", s_start:"Démarrer le test",
   q_head:"Pouvez-vous le faire en français ?", q_yes:"Oui, je peux le faire",
   q_no:"Pas encore", q_count:"Question",
-  r_eyebrow:"Résultat", r_title:"Votre profil CECR",
+  r_eyebrow:"Résultat", r_title:"Votre profil CECR en français",
   r_sub:"Niveau estimé par domaine de compétence",
   r_restart:"Recommencer", r_copy:"Copier les résultats", r_copied:"Copié ✓",
   areas:["L'écoute","Lecture","Interaction orale","Production orale","Rédaction"],
   cefr:{A1:"Débutant",A2:"Élémentaire",B1:"Intermédiaire",B2:"Avancé",C1:"Autonome",C2:"Maîtrise","Pré-A1":"En deçà de A1","—":"Non déterminé"},
-  footnote:"Reconstruction hors-ligne à des fins d'évaluation interne. Descripteurs CECR et algorithme d'après l'outil « Auto-évaluez vos capacités linguistiques » de la Journée européenne des langues (CELV / Conseil de l'Europe). Descripteurs CECR © Conseil de l'Europe. Identité visuelle : Karibu Hub / BSF."
+  footnote:"Auto-évaluation du français (CECR). Descripteurs d'après l'outil CELV / Conseil de l'Europe. Karibu Hub / BSF."
  },
  wo:{
+  notice:"Test bi tolluwaayu làkk farañse bi rekk lay natt, ci làkk wi la neex.",
   p_eyebrow:"Dalal ak jàmm", p_title:"Balaa nu tàmbali",
   p_sub:"Ay xibaar yu néew ngir saxal sa yoon.",
   f_name:"Tur walla tur wu ñu la xam", f_name_ph:"Sa tur",
@@ -178,37 +197,142 @@ const T = {
   f_age:"Sa at", f_gender:"Xeet", f_select:"Tannal",
   p_continue:"Jàll",
   s_eyebrow:"Seetu sa bopp", s_title:"Ban tolluwaay nga am ci farañse ?",
-  s_sub:"Ay mbind yu gàtt « Man naa… » ngir xam sa tolluwaay ci farañse, ci juróom-benni tolluwaayu CECR (A1 ba C2).",
+  s_sub:"Ay mbind yu gàtt « Man naa… » ngir xam sa tolluwaay ci farañse (A1 ba C2).",
   s_q:"Ngir tàmbali, naka nga gis sa bopp ci farañse ?",
   s_low:"Baaxul lool", s_high:"Baax na lool", s_start:"Tàmbali test bi",
   q_head:"Man nga ko def ci farañse ?", q_yes:"Waaw, man naa ko def",
   q_no:"Du léegi", q_count:"Laaj",
-  r_eyebrow:"Njeexital", r_title:"Sa profil CECR",
+  r_eyebrow:"Njeexital", r_title:"Sa profil CECR ci farañse",
   r_sub:"Tolluwaay bu ñu tënk ci benn benn wàll",
   r_restart:"Tàmbaleeti", r_copy:"Kopie njeexital yi", r_copied:"Kopie na ✓",
   areas:["Dégg","Jàng","Waxtaan","Wax","Bind"],
   cefr:{A1:"Tàmbalikat",A2:"Xam-tuuti",B1:"Digg-digg",B2:"Jëm-kanam",C1:"Boppam",C2:"Xareñ","Pré-A1":"Bala tàmbali","—":"Xamewul"},
-  footnote:"Jumtukaay bu ñu defaraat ngir seet ci biir. Mbind yi ci wolof ñungi ci coppite (à valider). Descripteurs CECR © Conseil de l'Europe. Melokaan : Karibu Hub / BSF."
+  footnote:"Seetu sa bopp ci farañse (CECR). Descripteurs Conseil de l'Europe. Karibu Hub / BSF."
+ },
+ ff:{
+  notice:"Ndee jarribo ko baawɗe maa e ɗemngal farayse tan ƴeewtotoo, e ɗemngal cuɓi-ɗaa ngal.",
+  p_eyebrow:"Bisimilla mon", p_title:"Ko adii nde ɗum fuɗɗoo",
+  p_sub:"Kabaaruuji seeɗa ngir heblude laawol maa.",
+  f_name:"Innde maa walla yettoore", f_name_ph:"Innde maa",
+  f_region:"Diiwaan", f_region_ph:"Suɓo diiwaan maa",
+  f_age:"Duuɓi maa", f_gender:"Jikku", f_select:"Suɓo",
+  p_continue:"Yeeso",
+  s_eyebrow:"Ƴeewto hoore maa", s_title:"Hol tolno maa e ɗemngal farayse ?",
+  s_sub:"Konguɗi daɓɓi « Mido waawi… » ngir ƴeewde tolno maa e farayse (A1 haa C2).",
+  s_q:"Ngir fuɗɗaade, hol no njiiru-ɗaa tolno maa e farayse ?",
+  s_low:"Faaɓti seeɗa", s_high:"Ina moƴƴi no feewi", s_start:"Fuɗɗo jarribo ngoo",
+  q_head:"Aɗa waawi ɗum e ɗemngal farayse ?", q_yes:"Eey, mido waawi ɗum",
+  q_no:"Tawa alaa", q_count:"Naamnal",
+  r_eyebrow:"Batiindi", r_title:"Tolnooji maa CECR e farayse",
+  r_sub:"Tolno mo fannu kala",
+  r_restart:"Fuɗɗo kadi", r_copy:"Natta battane ɗee", r_copied:"Nattaama ✓",
+  areas:["Nanngol","Janngugol","Yeewtere","Haalugol","Winndugol"],
+  cefr:{A1:"Fuɗɗoowo",A2:"Kumpitoowo",B1:"Hakkundeejo",B2:"Ganoowo",C1:"Dariiɗo e hoore mum",C2:"Bawɗo no feewi","Pré-A1":"Adii A1","—":"Humpitaaka"},
+  footnote:"Ƴeewto hoore maa e farayse (CECR). Descripteurs Conseil de l'Europe. Karibu Hub / BSF."
+ },
+ srr:{
+  notice:"A test axe, a loolaa làkk faranse axe rekk lay natt, ci làkk axe o bëggu.",
+  p_eyebrow:"Dalal ak jàmm", p_title:"Balaa nu tàmbali",
+  p_sub:"A kibaar ngir a yoon axe.",
+  f_name:"Tiri mbaa sant", f_name_ph:"Tiri am",
+  f_region:"Diiwaan", f_region_ph:"Tann diiwaan am",
+  f_age:"At ke", f_gender:"Goo/Jig", f_select:"Tann",
+  p_continue:"Jàll",
+  s_eyebrow:"Seetu o boop", s_title:"Ban tolluwaay nga am ci faranse ?",
+  s_sub:"A kalme « Xaye ma… » ngir xam a tolluwaay ci faranse (A1 ba C2).",
+  s_q:"Naka nga gis a boop ci faranse ?",
+  s_low:"Moƴƴee", s_high:"Moƴƴa faay", s_start:"Tàmbali test axe",
+  q_head:"Xaye nga fi ko ci faranse ?", q_yes:"Iyo, xaye ma fi ko",
+  q_no:"Du léegi", q_count:"Naam",
+  r_eyebrow:"Njeexital", r_title:"Profil CECR ci faranse",
+  r_sub:"Tolluwaay ci benn wàll",
+  r_restart:"Tàmbaleeti", r_copy:"Kopie njeexital", r_copied:"Kopie na ✓",
+  areas:["Faam","Jàng","Waxtaan","Lool","Wind"],
+  cefr:{A1:"Tàmbalikat",A2:"Xam-tuuti",B1:"Digg-digg",B2:"Jëm-kanam",C1:"Boppam",C2:"Xareñ","Pré-A1":"Bala A1","—":"Xamewul"},
+  footnote:"Seetu ci faranse (CECR). Descripteurs Conseil de l'Europe. Karibu Hub / BSF."
+ },
+ mnk:{
+  notice:"Nin silaroo be itolu la tubabumoo (français) le dantee la, ila kumakano meng neeyata la.",
+  p_eyebrow:"Bisimila", p_title:"Sani ŋa damina la",
+  p_sub:"Kobaroolu damina la.",
+  f_name:"Toodoo", f_name_ph:"Ila toodoo",
+  f_region:"Diiwaanoo", f_region_ph:"Ila diiwaanoo suuti",
+  f_age:"Sanji hakoo", f_gender:"Kee / Musoo", f_select:"Suuti",
+  p_continue:"Taa ñaato",
+  s_eyebrow:"I yɛrɛ dantee", s_title:"Hakoo jumaa le be i bulu tubabumoo to ?",
+  s_sub:"Kuma jannaa « N si noo… » ka ila tubabumoo dondima (A1 fo C2).",
+  s_q:"I hakiloo be tubabumoo to ñadi le ?",
+  s_low:"A maŋ beteyaa", s_high:"A beteyaata baake", s_start:"Damina silaroo la",
+  q_head:"I si noo a kɛ la tubabumoo to baŋ ?", q_yes:"Haa, n si noo a kɛ",
+  q_no:"A maŋ siita foloo", q_count:"Ñininkaroo",
+  r_eyebrow:"Labanoo", r_title:"Ila CECR tubabumoo labanoo",
+  r_sub:"Fannoo-o-fann hakoo",
+  r_restart:"A damina koteke", r_copy:"Kobaroolu kopii", r_copied:"A kopiita ✓",
+  areas:["Lamandiroo","Karaŋo","Baroo","Kumoo","Sɛbɛroo"],
+  cefr:{A1:"Daminanaa",A2:"Lɔndiloo",B1:"Tɛɛmanto",B2:"Ñaato-taala",C1:"A yɛrɛ ganta",C2:"Kandannaa","Pré-A1":"Sani A1","—":"A maŋ lɔŋ"},
+  footnote:"I yɛrɛ dantee tubabumoo la (CECR). Descripteurs Conseil de l'Europe. Karibu Hub / BSF."
+ },
+ snk:{
+  notice:"Jarribo ke kooti gilli tubabu dore (français) ya, dore minte a naxamu n do.",
+  p_eyebrow:"Bissimila", p_title:"Adii o ga tàmbali",
+  p_sub:"Kibaaru kooti ngir a yoonu.",
+  f_name:"Togo walla sant", f_name_ph:"N togo",
+  f_region:"Diiwaan", f_region_ph:"Tann diiwaan",
+  f_age:"Sanxu", f_gender:"Yugo / Yaxare", f_select:"Tann",
+  p_continue:"Yeeso",
+  s_eyebrow:"Xonno ƴeewte", s_title:"Ban tolluwaay nga am ci français ?",
+  s_sub:"« N ma waaju… » ngir xam a tolluwaay ci tubabu dore (A1 haa C2).",
+  s_q:"Naka nga gis sa bopp ci tubabu dore ?",
+  s_low:"Baaxe", s_high:"Baax na lool", s_start:"Damina jarribo ke",
+  q_head:"N ma waaju a def tubabu dore ya ?", q_yes:"Yo, n ma waaju a def",
+  q_no:"A nta fetti", q_count:"Maxinbaani",
+  r_eyebrow:"Batiindi", r_title:"N profil CECR tubabu dore ya",
+  r_sub:"Tolluwaay fann fann",
+  r_restart:"Damina koteke", r_copy:"Kopie batiindi", r_copied:"Kopie na ✓",
+  areas:["Waaju","Xaran","Baaru","Kuma","Safe"],
+  cefr:{A1:"Daminalikat",A2:"Xam-kooti",B1:"Tɛɛmanto",B2:"Ganoowo",C1:"Boppam",C2:"Xareñ","Pré-A1":"Adii A1","—":"Humpitaaka"},
+  footnote:"Xonno ƴeewte ci français (CECR). Descripteurs Conseil de l'Europe. Karibu Hub / BSF."
+ },
+ joo:{
+  notice:"Jarribo ji jéñut faranse bi rekk, di làkk bu nananguji.",
+  p_eyebrow:"Kusumay", p_title:"Balaa nu tàmbali",
+  p_sub:"Kabor kabor ngir yoon bi.",
+  f_name:"Kanuk mba sant", f_name_ph:"Kanuk kami",
+  f_region:"Diiwaan", f_region_ph:"Tann diiwaan kami",
+  f_age:"Mit mam", f_gender:"Añin / Asek", f_select:"Tann",
+  p_continue:"Jàll",
+  s_eyebrow:"Seetu o boop", s_title:"Ban tolluwaay di faranse ?",
+  s_sub:"« Inji nikan… » ngir xam sa tolluwaay di faranse (A1 ba C2).",
+  s_q:"Naka jéñ o boop di faranse ?",
+  s_low:"Baaxut", s_high:"Baax na mbëñ", s_start:"Tàmbali test bi",
+  q_head:"Nikan man di faranse ?", q_yes:"Iyo, inji nikan man",
+  q_no:"Fafookut", q_count:"Laaj",
+  r_eyebrow:"Njeexital", r_title:"Profil CECR di faranse",
+  r_sub:"Tolluwaay di benn benn wàll",
+  r_restart:"Tàmbaleeti", r_copy:"Kopie njeexital", r_copied:"Kopie na ✓",
+  areas:["Faam","Jàng","Waxtaan","Wax","Bind"],
+  cefr:{A1:"Tàmbalikat",A2:"Xam-tuuti",B1:"Digg-digg",B2:"Jëm-kanam",C1:"Boppam",C2:"Xareñ","Pré-A1":"Bala A1","—":"Xamewul"},
+  footnote:"Seetu ci faranse (CECR). Descripteurs Conseil de l'Europe. Karibu Hub / BSF."
  }
 };
 const t = k => T[lang][k];
 
-/* Profil : régions du Sénégal (14), tranches d'âge, genre */
+/* Profil : 14 Régions du Sénégal */
 const REGIONS = ["Dakar","Diourbel","Fatick","Kaffrine","Kaolack","Kédougou","Kolda",
   "Louga","Matam","Saint-Louis","Sédhiou","Tambacounda","Thiès","Ziguinchor"];
 const AGES = [
-  {v:"<18", fr:"Moins de 18 ans", wo:"Ci suufu 18 at"},
-  {v:"18-24", fr:"18–24 ans", wo:"18–24 at"},
-  {v:"25-34", fr:"25–34 ans", wo:"25–34 at"},
-  {v:"35-44", fr:"35–44 ans", wo:"35–44 at"},
-  {v:"45-54", fr:"45–54 ans", wo:"45–54 at"},
-  {v:"55+", fr:"55 ans et plus", wo:"55 at ak yenn"}
+  {v:"<18", fr:"Moins de 18 ans", wo:"Ci suufu 18 at", ff:"Les 18 duuɓi", srr:"Ci suufu 18 at", mnk:"Sanji 18 kodooma", snk:"Sanxu 18 kooti", joo:"Ci suufu 18 at"},
+  {v:"18-24", fr:"18–24 ans", wo:"18–24 at", ff:"18–24 duuɓi", srr:"18–24 at", mnk:"Sanji 18–24", snk:"Sanxu 18–24", joo:"18–24 at"},
+  {v:"25-34", fr:"25–34 ans", wo:"25–34 at", ff:"25–34 duuɓi", srr:"25–34 at", mnk:"Sanji 25–34", snk:"Sanxu 25–34", joo:"25–34 at"},
+  {v:"35-44", fr:"35–44 ans", wo:"35–44 at", ff:"35–44 duuɓi", srr:"35–44 at", mnk:"Sanji 35–44", snk:"Sanxu 35–44", joo:"35–44 at"},
+  {v:"45-54", fr:"45–54 ans", wo:"45–54 at", ff:"45–54 duuɓi", srr:"45–54 at", mnk:"Sanji 45–54", snk:"Sanxu 45–54", joo:"45–54 at"},
+  {v:"55+", fr:"55 ans et plus", wo:"55 at ak yenn", ff:"55 duuɓi e dow", srr:"55 at fa yeen", mnk:"Sanji 55 ka taa", snk:"Sanxu 55 doli", joo:"55 at ak yenn"}
 ];
 const GENDERS = [
-  {v:"F", fr:"Femme", wo:"Jigéen"},
-  {v:"M", fr:"Homme", wo:"Góor"},
-  {v:"A", fr:"Autre", wo:"Beneen"},
-  {v:"N", fr:"Préfère ne pas répondre", wo:"Bëgguma ko wax"}
+  {v:"F", fr:"Femme", wo:"Jigéen", ff:"Debbo", srr:"Jigéen", mnk:"Musoo", snk:"Yaxare", joo:"Asek"},
+  {v:"M", fr:"Homme", wo:"Góor", ff:"Gorko", srr:"Góor", mnk:"Kee", snk:"Yugo", joo:"Añin"},
+  {v:"A", fr:"Autre", wo:"Beneen", ff:"Goɗɗum", srr:"Beneen", mnk:"Doo koteke", snk:"Wuro", joo:"Banoon"},
+  {v:"N", fr:"Préfère ne pas répondre", wo:"Bëgguma ko wax", ff:"Yiɗaa jaabaade", srr:"Bëgguma ko lool", mnk:"N maŋ laafi ka a fo", snk:"N nta bëgg a tiye", joo:"Bëgguma ko wax"}
 ];
 
 /* ---------- Habillage par domaine ---------- */
@@ -217,7 +341,7 @@ const AREA_COLOR = {0:"#D945EE",1:"#3B82F6",2:"#7C3AED",3:"#369791",4:"#13B8A7"}
 const CEFR_BY_VALUE = {0:"A1",1:"A2",2:"B1",3:"B2",4:"C1",5:"C2"};
 const CEFR_COLOR = {A1:"#3B82F6",A2:"#2D9D60",B1:"#FABF24",B2:"#EF7F0F",C1:"#FC6854",C2:"#7C3AED","Pré-A1":"#94A3B8"};
 
-/* ---------- Algorithme adaptatif (fidèle à l'outil d'origine) ---------- */
+/* ---------- Algorithme adaptatif ---------- */
 const matrix = [
   [{mask:[1,1,1],levels:[4,5],result:5}],[{mask:[1,1,0],levels:[4,5],result:4}],
   [{mask:[1,0,1,1],levels:[4,2,3],result:3}],[{mask:[1,0,1,0],levels:[4,2,3],result:2}],
@@ -232,6 +356,7 @@ const minCefrValue = 0;
 let state, currentQuestion, selectedLevel, answeredCount, profile = {};
 const flat = () => matrix.flat();
 const matchRow = mask => flat().find(r => r.mask.join() === mask.join());
+
 function getNextRandomArea(){
   const nf = Object.entries(state).filter(([_,v]) => !v.isFinished);
   if(nf.length === 0) return null;
@@ -239,6 +364,7 @@ function getNextRandomArea(){
   const c = nf.filter(([_,v]) => v.mask.length === mn);
   return parseInt(c[Math.floor(Math.random()*c.length)][0],10);
 }
+
 function start(){
   selectedLevel = parseInt(document.getElementById('selfLevel').value,10);
   answeredCount = 0; currentQuestion = null;
@@ -246,12 +372,14 @@ function start(){
   state = {}; for(let a=0;a<5;a++) state[a] = {mask:[fs],isFinished:false};
   next();
 }
+
 function answer(can){
   const a = currentQuestion.AreaValue;
   state[a].mask = [...state[a].mask, can];
   state[a].isFinished = !!matchRow(state[a].mask);
   answeredCount++; next();
 }
+
 function next(){
   const area = getNextRandomArea();
   if(area === null) return finish();
@@ -271,12 +399,13 @@ function next(){
   if(currentQuestion) renderQuestion();
   else { state[area].isFinished = true; next(); }
 }
+
 function finish(){
   const r = {}; for(let a=0;a<5;a++) r[a] = matchRow(state[a].mask)?.result;
   lastResults = r; showResults();
 }
 
-/* ---------- Rendu ---------- */
+/* ---------- Rendu & Affichage ---------- */
 function show(id){ ['screen-profile','screen-self','screen-q','screen-res'].forEach(s =>
   document.getElementById(s).classList.toggle('hidden', s !== id)); currentScreen = id; }
 let currentScreen = 'screen-profile', lastResults = null;
@@ -292,17 +421,19 @@ function renderQuestion(){
   document.getElementById('qIcon').textContent = AREA_ICON[q.AreaValue];
   document.getElementById('qArea').textContent = t('areas')[q.AreaValue];
   document.getElementById('qHeadTitle').textContent = t('q_head');
-  document.getElementById('qText').textContent = q.title[lang];
+  document.getElementById('qText').textContent = q.title[lang] || q.title['fr'];
   document.getElementById('lblYes').textContent = t('q_yes');
   document.getElementById('lblNo').textContent = t('q_no');
   document.getElementById('qCount').textContent = t('q_count') + ' ' + (answeredCount + 1);
   const done = Object.values(state).filter(s => s.isFinished).length;
   document.getElementById('progbar').style.width = Math.min(100,(done/5)*100) + '%';
 }
+
 function resultLabel(v){
   let cefr = (v===undefined||v===null) ? '—' : (v===-1 ? 'Pré-A1' : CEFR_BY_VALUE[v]);
   return {cefr, txt:t('cefr')[cefr] || ''};
 }
+
 function showResults(){
   show('screen-res');
   document.getElementById('resTitle').textContent =
@@ -321,7 +452,7 @@ function showResults(){
   }
 }
 
-/* ---------- Langue ---------- */
+/* ---------- Gestion de la langue et initialisation ---------- */
 function fillSelect(id, items, getLabel, getVal, ph){
   const s = document.getElementById(id); const prev = s.value;
   s.innerHTML = '<option value="" disabled selected>'+ph+'</option>';
@@ -329,27 +460,27 @@ function fillSelect(id, items, getLabel, getVal, ph){
     o.value=getVal(it); o.textContent=getLabel(it); s.appendChild(o); });
   if(prev) s.value = prev;
 }
+
 function applyStatic(){
   document.querySelectorAll('[data-i18n]').forEach(el => el.textContent = t(el.dataset.i18n));
+  document.getElementById('targetNotice').textContent = t('notice');
   document.getElementById('pf-name').placeholder = t('f_name_ph');
   fillSelect('pf-region', REGIONS, r=>r, r=>r, t('f_region_ph'));
-  fillSelect('pf-age', AGES, a=>a[lang], a=>a.v, t('f_select'));
-  fillSelect('pf-gender', GENDERS, g=>g[lang], g=>g.v, t('f_select'));
+  fillSelect('pf-age', AGES, a=>a[lang]||a.fr, a=>a.v, t('f_select'));
+  fillSelect('pf-gender', GENDERS, g=>g[lang]||g.fr, g=>g.v, t('f_select'));
   document.getElementById('footnote').textContent = t('footnote');
-  const wn = document.getElementById('wo-note');
-  if(lang==='wo'){ wn.textContent='⚠️ Firi wolof wi, ñungi ci coppite. / Traduction wolof à valider.'; wn.classList.remove('hidden'); }
-  else wn.classList.add('hidden');
 }
+
 function setLang(l){
+  if(!l || l.startsWith('disabled-')) return;
   lang = l; document.documentElement.lang = l;
-  document.getElementById('lang-fr').classList.toggle('on', l==='fr');
-  document.getElementById('lang-wo').classList.toggle('on', l==='wo');
+  document.getElementById('lang-select').value = l;
   applyStatic();
   if(currentScreen==='screen-q' && currentQuestion) renderQuestion();
   if(currentScreen==='screen-res' && lastResults) showResults();
 }
 
-/* ---------- Profil : validation ---------- */
+/* ---------- Validation Profil ---------- */
 function checkProfile(){
   profile = {
     name: document.getElementById('pf-name').value.trim(),
@@ -363,6 +494,7 @@ function checkProfile(){
 }
 
 /* ---------- Événements ---------- */
+document.getElementById('lang-select').addEventListener('change', e => setLang(e.target.value));
 ['pf-name','pf-region','pf-age','pf-gender'].forEach(id =>
   document.getElementById(id).addEventListener('input', checkProfile));
 document.getElementById('toSelfBtn').addEventListener('click', () => { if(checkProfile()) show('screen-self'); });
@@ -376,6 +508,7 @@ document.getElementById('copyBtn').addEventListener('click', () => {
   if(!lastResults) return;
   const lines = [
     'Auto-évaluation français (CECR)',
+    'Langue d’accompagnement: '+lang.toUpperCase(),
     'Nom: '+(profile.name||''), 'Région: '+(profile.region||''),
     'Âge: '+(profile.age||''), 'Genre: '+(profile.gender||''), '—',
     ...[0,1,2,3,4].map(a => T.fr.areas[a]+': '+resultLabel(lastResults[a]).cefr)
