@@ -77,6 +77,11 @@
   <!-- PROFILE -->
   <div id="screen-profile">
     <div class="content">
+      <div class="k-card stack" style="border-left:5px solid var(--k-coral)">
+        <div class="k-eyebrow-inline" data-i18n="intro_eyebrow"></div>
+        <h1 class="q" data-i18n="intro_title"></h1>
+        <p class="muted" style="margin:0" data-i18n="intro_body"></p>
+      </div>
       <div class="k-card stack">
         <div class="k-eyebrow-inline" data-i18n="p_eyebrow"></div>
         <h1 class="q" data-i18n="p_title"></h1>
@@ -169,6 +174,9 @@ let lang = 'fr';
 const T = {
  fr:{
   notice:"Ce test évalue toujours votre niveau en français, dans la langue d'interface de votre choix.",
+  intro_eyebrow:"Auto-évaluation",
+  intro_title:"Auto-évaluez vos compétences en français",
+  intro_body:"Cet outil vous invite à estimer vous-même votre niveau en français, selon les six niveaux du Cadre européen commun de référence (CECR : A1 à C2). C'est une auto-évaluation : vous indiquez ce que vous pensez pouvoir faire.",
   p_eyebrow:"Bienvenue", p_title:"Avant de commencer",
   p_sub:"Quelques informations pour personnaliser votre parcours.",
   f_name:"Prénom ou pseudonyme", f_name_ph:"Votre prénom",
@@ -190,6 +198,9 @@ const T = {
  },
  wo:{
   notice:"Test bi tolluwaayu làkk farañse bi rekk lay natt, ci làkk wi la neex.",
+  intro_eyebrow:"Seetu sa bopp",
+  intro_title:"Seetal sa bopp ci farañse",
+  intro_body:"Jumtukaay bii dana la dimbali ngir nga xam sa tolluwaay ci farañse, ci juróom-benni tolluwaayu CECR (A1 ba C2). Yaa koy seet sa bopp : yaa wax li nga xalaat ni man nga koy def.",
   p_eyebrow:"Dalal ak jàmm", p_title:"Balaa nu tàmbali",
   p_sub:"Ay xibaar yu néew ngir saxal sa yoon.",
   f_name:"Tur walla tur wu ñu la xam", f_name_ph:"Sa tur",
@@ -211,6 +222,9 @@ const T = {
  },
  ff:{
   notice:"Ndee jarribo ko baawɗe maa e ɗemngal farayse tan ƴeewtotoo, e ɗemngal cuɓi-ɗaa ngal.",
+  intro_eyebrow:"Ƴeewto hoore maa",
+  intro_title:"Ƴeewto baawɗe maa e farayse",
+  intro_body:"Kaɓirgel ngel ina wallita ma ƴeewde hoore maa tolno maa e farayse, e tolnooji jeegom ɗi CECR (A1 haa C2). Ko ƴeewto hoore maa : aan holliraa ko faami-ɗaa waawde.",
   p_eyebrow:"Bisimilla mon", p_title:"Ko adii nde ɗum fuɗɗoo",
   p_sub:"Kabaaruuji seeɗa ngir heblude laawol maa.",
   f_name:"Innde maa walla yettoore", f_name_ph:"Innde maa",
@@ -232,6 +246,9 @@ const T = {
  },
  srr:{
   notice:"A test axe, a loolaa làkk faranse axe rekk lay natt, ci làkk axe o bëggu.",
+  intro_eyebrow:"Seetu o boop",
+  intro_title:"Seet o boop ci faranse",
+  intro_body:"Jumtukaay ke dana la mbalaa ngir a xam a tolluwaay ci faranse, ci juróom-benni tolluwaayu CECR (A1 ba C2). Aan a seet o boop : aan a wax ke a xalaat a fi.",
   p_eyebrow:"Dalal ak jàmm", p_title:"Balaa nu tàmbali",
   p_sub:"A kibaar ngir a yoon axe.",
   f_name:"Tiri mbaa sant", f_name_ph:"Tiri am",
@@ -253,6 +270,9 @@ const T = {
  },
  mnk:{
   notice:"Nin silaroo be itolu la tubabumoo (français) le dantee la, ila kumakano meng neeyata la.",
+  intro_eyebrow:"I yɛrɛ dantee",
+  intro_title:"I yɛrɛ dantee tubabumoo la",
+  intro_body:"Nin jooraŋo be i maakoyi la ka i yɛrɛ hakoo dondima tubabumoo to, CECR tolu wooro to (A1 fo C2). Ite le ka i yɛrɛ dantee : i ka a fo i hakiloo la meŋ i si noo a kɛ.",
   p_eyebrow:"Bisimila", p_title:"Sani ŋa damina la",
   p_sub:"Kobaroolu damina la.",
   f_name:"Toodoo", f_name_ph:"Ila toodoo",
@@ -274,6 +294,9 @@ const T = {
  },
  snk:{
   notice:"Jarribo ke kooti gilli tubabu dore (français) ya, dore minte a naxamu n do.",
+  intro_eyebrow:"Xonno ƴeewte",
+  intro_title:"Xonno ƴeewte ci français",
+  intro_body:"Jaamanu ke da n doli ka n xonno n tolluwaay tinxinte tubabu dore ya, CECR tolluwaay tunmu (A1 haa C2). An da n xonno ƴeewte : an ga a tiye min an miijo n a waaju.",
   p_eyebrow:"Bissimila", p_title:"Adii o ga tàmbali",
   p_sub:"Kibaaru kooti ngir a yoonu.",
   f_name:"Togo walla sant", f_name_ph:"N togo",
@@ -295,6 +318,9 @@ const T = {
  },
  joo:{
   notice:"Jarribo ji jéñut faranse bi rekk, di làkk bu nananguji.",
+  intro_eyebrow:"Seetu o boop",
+  intro_title:"Seetal o boop di faranse",
+  intro_body:"Jumtukaay ji dana la dimbali ngir xam sa tolluwaay di faranse, CECR tolluwaay bu (A1 ba C2). Aw a seet o boop : aw a wax li aw xalaat ni man aw koy def.",
   p_eyebrow:"Kusumay", p_title:"Balaa nu tàmbali",
   p_sub:"Kabor kabor ngir yoon bi.",
   f_name:"Kanuk mba sant", f_name_ph:"Kanuk kami",
