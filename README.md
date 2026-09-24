@@ -6,7 +6,7 @@ Test adaptatif d'**auto-positionnement en français** selon le Cadre européen c
 de référence (**A1 → C2**), sur 5 domaines : écoute, lecture, interaction orale,
 production orale et rédaction. Application **autonome**, sans dépendance, aux couleurs
 **Karibu Hub / BSF**.
-
+  
 ## ✨ Fonctionnalités
 
 - 🎯 **Adaptatif** — 10 à 18 affirmations « Je peux… », niveau CECR par domaine.
