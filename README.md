@@ -19,9 +19,8 @@ production orale et rédaction. Application **autonome**, sans dépendance, aux 
 
 ## 🚀 Utilisation
 
-- **En local :** double-cliquer sur `index.html`.
-- **En ligne (GitHub Pages) :** *Settings → Pages → branche `main`, dossier `/root`*
-  (un fichier `.nojekyll` est déjà inclus).
+- **En local / offline :** télécharger le site, extraire les fichiers et double-cliquer sur `index.html`.
+- **En ligne (GitHub Pages) :** Cliquez ici https://ocaoimh.github.io/auto-eval-fr/ 
 
 ## ⚠️ Traductions en langues nationales à valider
 
