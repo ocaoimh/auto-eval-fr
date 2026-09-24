@@ -1,0 +1,332 @@
+[
+  {
+    "ID": 31,
+    "CEFR": "A1",
+    "CEFRValue": 0,
+    "Area": "L'écoute",
+    "AreaValue": 0,
+    "title": {
+      "fr": "Je peux comprendre des mots familiers et des expressions très courantes au sujet de moi-même, de ma famille et de l'environnement concret et immédiat, si les gens parlent lentement et distinctement.",
+      "wo": "Man naa dégg baat yu ma miin ak wax yu yomb ci sama bopp, sama njaboot ak li ma wër, su ñu waxee ndànk te leer."
+    }
+  },
+  {
+    "ID": 36,
+    "CEFR": "A2",
+    "CEFRValue": 1,
+    "Area": "L'écoute",
+    "AreaValue": 0,
+    "title": {
+      "fr": "Je peux comprendre des expressions et un vocabulaire très fréquent relatifs à ce qui me concerne de très près (par ex. moi-même, ma famille, les achats, l'environnement proche, le travail). Je peux saisir l'essentiel d'annonces et de messages simples et clairs.",
+      "wo": "Man naa dégg wax ak baat yu bari yu jëm ci sama dund (sama bopp, njaboot, njënd, li ma wër, liggéey). Man naa jàpp li am solo ci ay yégle ak bataaxal yu yomb te leer."
+    }
+  },
+  {
+    "ID": 41,
+    "CEFR": "B1",
+    "CEFRValue": 2,
+    "Area": "L'écoute",
+    "AreaValue": 0,
+    "title": {
+      "fr": "Je peux comprendre les points essentiels quand un langage clair et standard est utilisé et s'il s'agit de sujets familiers concernant le travail, l'école, les loisirs, etc. Je peux comprendre l'essentiel de nombreuses émissions de radio ou de télévision sur l'actualité ou sur des sujets qui m'intéressent à titre personnel ou professionnel si l'on parle d'une façon relativement lente et distincte.",
+      "wo": "Man naa dégg li am solo su ñu waxee ci làkk bu leer te miin, ci mbir yu ma miin (liggéey, jàngu, noflaay…). Man naa jàpp li ëpp ci emisioŋ radio walla tele su ñu waxee ndànk te leer."
+    }
+  },
+  {
+    "ID": 46,
+    "CEFR": "B2",
+    "CEFRValue": 3,
+    "Area": "L'écoute",
+    "AreaValue": 0,
+    "title": {
+      "fr": "Je peux comprendre des conférences et des discours assez longs et même suivre une argumentation complexe si le sujet m'en est relativement familier. Je peux comprendre la plupart des émissions de télévision sur l'actualité et les informations. Je peux comprendre la plupart des films en langue standard.",
+      "wo": "Man naa dégg ay waxtaan ak diskuur yu gudd, te topp benn xalaat bu jafe su mbir mi may miin. Man naa jàpp li ëpp ci emisioŋ tele ak filim yu ñu def ci làkk bu standaar."
+    }
+  },
+  {
+    "ID": 51,
+    "CEFR": "C1",
+    "CEFRValue": 4,
+    "Area": "L'écoute",
+    "AreaValue": 0,
+    "title": {
+      "fr": "Je peux comprendre un long discours même s'il n'est pas clairement structuré et que les articulations sont seulement implicites. Je peux comprendre les émissions de télévision et les films sans trop d'effort.",
+      "wo": "Man naa dégg diskuur bu gudd doonte du bu leer te seqoo yi ñungi ci biir. Man naa jàpp emisioŋ tele ak filim yu bare te bañ a sonn."
+    }
+  },
+  {
+    "ID": 56,
+    "CEFR": "C2",
+    "CEFRValue": 5,
+    "Area": "L'écoute",
+    "AreaValue": 0,
+    "title": {
+      "fr": "Je n'ai aucune difficulté à comprendre le langage oral, que ce soit dans les conditions du direct ou dans les médias et quand on parle vite, à condition d'avoir du temps pour me familiariser avec un accent particulier.",
+      "wo": "Amuma benn jafe-jafe ci dégg wax, muy ci direk walla ci medià, te su ñu waxee gaaw, su ma amee tuuti jamono ngir miin aksaŋ bi."
+    }
+  },
+  {
+    "ID": 32,
+    "CEFR": "A1",
+    "CEFRValue": 0,
+    "Area": "Lecture",
+    "AreaValue": 1,
+    "title": {
+      "fr": "Je peux comprendre des noms familiers, des mots ainsi que des phrases très simples, par exemple dans des annonces, des affiches ou des catalogues.",
+      "wo": "Man naa jàng tur yu ma miin, ay baat ak mbind yu yomb, ni ci ay yégle, ay afiche walla ay katalog."
+    }
+  },
+  {
+    "ID": 37,
+    "CEFR": "A2",
+    "CEFRValue": 1,
+    "Area": "Lecture",
+    "AreaValue": 1,
+    "title": {
+      "fr": "Je peux lire des textes courts très simples. Je peux trouver une information particulière prévisible dans des documents courants comme les publicités, les prospectus, les menus et les horaires et je peux comprendre des lettres personnelles courtes et simples.",
+      "wo": "Man naa jàng ay mbind yu gàtt te yomb. Man naa gis xibaar bu ma soxla ci ay mbind ni reklaam, meññ ak orëe, te man naa jàng bataaxal yu gàtt te yomb."
+    }
+  },
+  {
+    "ID": 42,
+    "CEFR": "B1",
+    "CEFRValue": 2,
+    "Area": "Lecture",
+    "AreaValue": 1,
+    "title": {
+      "fr": "Je peux comprendre des textes rédigés essentiellement dans une langue courante ou relative à mon travail. Je peux comprendre la description d'événements, l'expression de sentiments et de souhaits dans des lettres personnelles.",
+      "wo": "Man naa jàng ay mbind yu ñu bind ci làkk bu miin walla bu jëm ci sama liggéey. Man naa jàpp melokaanu xew-xew, yég-yég ak bëgg-bëgg ci ay bataaxal."
+    }
+  },
+  {
+    "ID": 47,
+    "CEFR": "B2",
+    "CEFRValue": 3,
+    "Area": "Lecture",
+    "AreaValue": 1,
+    "title": {
+      "fr": "Je peux lire des articles et des rapports sur des questions contemporaines dans lesquels les auteurs adoptent une attitude particulière ou un certain point de vue. Je peux comprendre un texte littéraire contemporain en prose.",
+      "wo": "Man naa jàng ay artikel ak rapoor ci mbir yu jamono ci lu am xalaat bu wóor. Man naa jàpp benn mbind bu literatiir bu jamono."
+    }
+  },
+  {
+    "ID": 52,
+    "CEFR": "C1",
+    "CEFRValue": 4,
+    "Area": "Lecture",
+    "AreaValue": 1,
+    "title": {
+      "fr": "Je peux comprendre des textes factuels ou littéraires longs et complexes et en apprécier les différences de style. Je peux comprendre des articles spécialisés et de longues instructions techniques même lorsqu'ils ne sont pas en relation avec mon domaine.",
+      "wo": "Man naa jàng ay mbind yu gudd te jafe, di jàpp seen wuute ci melokaan. Man naa jàpp ay artikel yu xóot ak ndigal yu gudd yu teknik, doonte bokkuñu ci sama wàll."
+    }
+  },
+  {
+    "ID": 57,
+    "CEFR": "C2",
+    "CEFRValue": 5,
+    "Area": "Lecture",
+    "AreaValue": 1,
+    "title": {
+      "fr": "Je peux lire sans effort tout type de texte, même abstrait ou complexe quant au fond ou à la forme, par exemple un manuel, un article spécialisé ou une œuvre littéraire.",
+      "wo": "Man naa jàng lu yomb ay xeeti mbind yépp, doonte dañu jafe walla xóot ci seen tënk walla melokaan, ni ci benn téere, benn artikel bu xóot walla benn liggéeyu literatiir."
+    }
+  },
+  {
+    "ID": 33,
+    "CEFR": "A1",
+    "CEFRValue": 0,
+    "Area": "Interaction orale",
+    "AreaValue": 2,
+    "title": {
+      "fr": "Je peux communiquer, de façon simple, à condition que l'interlocuteur soit disposé à répéter ou à reformuler ses phrases plus lentement et à m'aider à formuler ce que j'essaie de dire. Je peux poser des questions simples sur des sujets familiers ou sur ce dont j'ai immédiatement besoin, ainsi que répondre à de telles questions.",
+      "wo": "Man naa waxtaan ci lu yomb, su nit ki nangoo baamtu walla waxaat ndànk te dimbali ma. Man naa laaj ay laaj yu yomb ci mbir yu ma miin walla li ma soxla, te tontu ci laaj yu ni mel."
+    }
+  },
+  {
+    "ID": 38,
+    "CEFR": "A2",
+    "CEFRValue": 1,
+    "Area": "Interaction orale",
+    "AreaValue": 2,
+    "title": {
+      "fr": "Je peux communiquer lors de tâches simples et habituelles ne demandant qu'un échange d'informations simple et direct sur des sujets et des activités familiers. Je peux avoir des échanges très brefs même si, en règle générale, je ne comprends pas assez pour poursuivre une conversation.",
+      "wo": "Man naa waxtaan ci mbir yu yomb te miin yu laaj rekk benn wexeltu xibaar bu yomb. Man naa def ay wexeltu yu gàtt, doonte du ma dégg lu doy ngir wéyal waxtaan bi."
+    }
+  },
+  {
+    "ID": 43,
+    "CEFR": "B1",
+    "CEFRValue": 2,
+    "Area": "Interaction orale",
+    "AreaValue": 2,
+    "title": {
+      "fr": "Je peux faire face à la majorité des situations que l'on peut rencontrer au cours d'un voyage dans une région où la langue est parlée. Je peux prendre part sans préparation à une conversation sur des sujets familiers ou d'intérêt personnel ou qui concernent la vie quotidienne (par exemple famille, loisirs, travail, voyage et actualité).",
+      "wo": "Man naa mucc ci li ëpp ci mbir yu man a am ci benn tukki ci gox bu ñuy wax làkk wi. Man naa bokk ci benn waxtaan bu ma waajul ci mbir yu ma miin walla yu ma bëgg (njaboot, noflaay, liggéey, tukki, xibaar)."
+    }
+  },
+  {
+    "ID": 48,
+    "CEFR": "B2",
+    "CEFRValue": 3,
+    "Area": "Interaction orale",
+    "AreaValue": 2,
+    "title": {
+      "fr": "Je peux communiquer avec un degré de spontanéité et d'aisance qui rende possible une interaction normale avec un locuteur natif. Je peux participer activement à une conversation dans des situations familières, présenter et défendre mes opinions.",
+      "wo": "Man naa waxtaan ak gaaw ak yomb bu may may waxtaan bu yaatu ak ku làkk wi di boppam. Man naa bokk bu baax ci benn waxtaan ci mbir yu ma miin, te wone ak aar sama xalaat."
+    }
+  },
+  {
+    "ID": 53,
+    "CEFR": "C1",
+    "CEFRValue": 4,
+    "Area": "Interaction orale",
+    "AreaValue": 2,
+    "title": {
+      "fr": "Je peux m'exprimer spontanément et couramment sans trop apparemment devoir chercher mes mots. Je peux utiliser la langue de manière souple et efficace pour des relations sociales ou professionnelles. Je peux exprimer mes idées et opinions avec précision et lier mes interventions à celles de mes interlocuteurs.",
+      "wo": "Man naa wax ak yomb te gaaw te bañ a seet sama baat. Man naa jëfandikoo làkk wi ci lu ràññeeku ngir séq-séq ak liggéey. Man naa wone sama xalaat ak sama gis-gis te boole ko ak li sama nawle di wax."
+    }
+  },
+  {
+    "ID": 58,
+    "CEFR": "C2",
+    "CEFRValue": 5,
+    "Area": "Interaction orale",
+    "AreaValue": 2,
+    "title": {
+      "fr": "Je peux participer sans effort à toute conversation ou discussion et je suis aussi très à l'aise avec les expressions idiomatiques et les tournures courantes. Je peux m'exprimer couramment et exprimer avec précision de fines nuances de sens. En cas de difficulté, je peux faire marche arrière pour y remédier avec assez d'habileté et pour qu'elle passe presque inaperçue.",
+      "wo": "Man naa bokk ci ndaje mu ne walla waxtaan te sonnuma, te ma miin baat yu idyomatik. Man naa wax ak yomb te wone ay wuute yu ndaw ci firi. Su jafe-jafe amee, man naa ko defaraat ci lu ñu manul a gis."
+    }
+  },
+  {
+    "ID": 34,
+    "CEFR": "A1",
+    "CEFRValue": 0,
+    "Area": "Production orale",
+    "AreaValue": 3,
+    "title": {
+      "fr": "Je peux utiliser des expressions et des phrases simples pour décrire mon lieu d'habitation et les gens que je connais.",
+      "wo": "Man naa jëfandikoo ay wax yu yomb ngir wax fu ma dëkk ak ñi ma xam."
+    }
+  },
+  {
+    "ID": 39,
+    "CEFR": "A2",
+    "CEFRValue": 1,
+    "Area": "Production orale",
+    "AreaValue": 3,
+    "title": {
+      "fr": "Je peux utiliser une série de phrases ou d'expressions pour décrire en termes simples ma famille et d'autres gens, mes conditions de vie, ma formation et mon activité professionnelle actuelle ou récente.",
+      "wo": "Man naa jëfandikoo ay wax ngir wax ci lu yomb sama njaboot, ñeneen, sama dund, sama njàng ak sama liggéey."
+    }
+  },
+  {
+    "ID": 44,
+    "CEFR": "B1",
+    "CEFRValue": 2,
+    "Area": "Production orale",
+    "AreaValue": 3,
+    "title": {
+      "fr": "Je peux m'exprimer de manière simple afin de raconter des expériences et des événements, mes rêves, mes espoirs ou mes buts. Je peux brièvement donner les raisons et explications de mes opinions ou projets. Je peux raconter une histoire ou l'intrigue d'un livre ou d'un film et exprimer mes réactions.",
+      "wo": "Man naa wax ci lu yomb ngir nettali ay xew-xew, sama gént, sama yaakaar walla sama pexe. Man naa joxe ci lu gàtt li tax ci sama xalaat. Man naa nettali benn téere walla filim, te wone sama yég-yég."
+    }
+  },
+  {
+    "ID": 49,
+    "CEFR": "B2",
+    "CEFRValue": 3,
+    "Area": "Production orale",
+    "AreaValue": 3,
+    "title": {
+      "fr": "Je peux m'exprimer de façon claire et détaillée sur une grande gamme de sujets relatifs à mes centres d'intérêt. Je peux développer un point de vue sur un sujet d'actualité et expliquer les avantages et les inconvénients de différentes possibilités.",
+      "wo": "Man naa wax ci lu leer te wéral ci mbir yu bari yu jëm ci li ma bëgg. Man naa yékkati benn xalaat ci mbir bu jamono te firndeel njariñ ak ñàkk yu ay tànneef."
+    }
+  },
+  {
+    "ID": 54,
+    "CEFR": "C1",
+    "CEFRValue": 4,
+    "Area": "Production orale",
+    "AreaValue": 3,
+    "title": {
+      "fr": "Je peux présenter des descriptions claires et détaillées de sujets complexes, en intégrant des thèmes qui leur sont liés, en développant certains points et en terminant mon intervention de façon appropriée.",
+      "wo": "Man naa wone ay melokaan yu leer te wéral ci mbir yu jafe, boole ci ay tema yu ci aju, di yokk ay wàll te jeexal sama wax ci lu jaadu."
+    }
+  },
+  {
+    "ID": 59,
+    "CEFR": "C2",
+    "CEFRValue": 5,
+    "Area": "Production orale",
+    "AreaValue": 3,
+    "title": {
+      "fr": "Je peux présenter une description ou une argumentation claire et fluide dans un style adapté au contexte, construire une présentation de façon logique et aider mon auditeur à remarquer et à se rappeler les points importants.",
+      "wo": "Man naa wone benn melokaan walla werante bu leer te ràññeeku ci benn stiil bu jaadu, tabax sama wax ci lu jubluwu te dimbali ku may déglu mu fàttaliku li am solo."
+    }
+  },
+  {
+    "ID": 35,
+    "CEFR": "A1",
+    "CEFRValue": 0,
+    "Area": "Rédaction",
+    "AreaValue": 4,
+    "title": {
+      "fr": "Je peux écrire une courte carte postale simple, par exemple de vacances. Je peux porter des détails personnels dans un questionnaire, inscrire par exemple mon nom, ma nationalité et mon adresse sur une fiche d'hôtel.",
+      "wo": "Man naa bind benn kart postal bu gàtt te yomb, ni ci ay vakaans. Man naa dugal ay xibaaru bopp ci benn keyit, ni sama tur, sama réew ak sama adres ci benn fiise otel."
+    }
+  },
+  {
+    "ID": 40,
+    "CEFR": "A2",
+    "CEFRValue": 1,
+    "Area": "Rédaction",
+    "AreaValue": 4,
+    "title": {
+      "fr": "Je peux écrire des notes et messages simples et courts. Je peux écrire une lettre personnelle très simple, par exemple de remerciements.",
+      "wo": "Man naa bind ay not ak bataaxal yu yomb te gàtt. Man naa bind benn bataaxal bu yomb, ni bu gërëm."
+    }
+  },
+  {
+    "ID": 45,
+    "CEFR": "B1",
+    "CEFRValue": 2,
+    "Area": "Rédaction",
+    "AreaValue": 4,
+    "title": {
+      "fr": "Je peux écrire un texte simple et cohérent sur des sujets familiers ou qui m'intéressent personnellement. Je peux écrire des lettres personnelles pour décrire expériences et impressions.",
+      "wo": "Man naa bind benn mbind bu yomb te dëppoo ci mbir yu ma miin walla yu ma bëgg. Man naa bind ay bataaxal ngir wax sama jaar-jaar ak sama yég-yég."
+    }
+  },
+  {
+    "ID": 50,
+    "CEFR": "B2",
+    "CEFRValue": 3,
+    "Area": "Rédaction",
+    "AreaValue": 4,
+    "title": {
+      "fr": "Je peux écrire des textes clairs et détaillés sur une grande gamme de sujets relatifs à mes intérêts. Je peux écrire un essai ou un rapport en transmettant une information ou en exposant des raisons pour ou contre une opinion donnée. Je peux écrire des lettres qui mettent en valeur le sens que j'attribue personnellement aux événements et aux expériences.",
+      "wo": "Man naa bind ay mbind yu leer te wéral ci mbir yu bari. Man naa bind benn ese walla rapoor di joxe xibaar walla wone li ma tax a nangu walla bañ benn xalaat. Man naa bind ay bataaxal yu wone li ay xew-xew jariñ ci man."
+    }
+  },
+  {
+    "ID": 55,
+    "CEFR": "C1",
+    "CEFRValue": 4,
+    "Area": "Rédaction",
+    "AreaValue": 4,
+    "title": {
+      "fr": "Je peux m'exprimer dans un texte clair et bien structuré et développer mon point de vue. Je peux écrire sur des sujets complexes dans une lettre, un essai ou un rapport, en soulignant les points que je juge importants. Je peux adopter un style adapté au destinataire.",
+      "wo": "Man naa bind benn mbind bu leer te tektal bu baax, te yokk sama xalaat. Man naa bind ci mbir yu jafe ci benn bataaxal, ese walla rapoor, te wone li ma jàpp ni li gën a am solo. Man naa jëfandikoo benn stiil bu jaadu ak ki may bind."
+    }
+  },
+  {
+    "ID": 60,
+    "CEFR": "C2",
+    "CEFRValue": 5,
+    "Area": "Rédaction",
+    "AreaValue": 4,
+    "title": {
+      "fr": "Je peux écrire un texte clair, fluide et stylistiquement adapté aux circonstances. Je peux rédiger des lettres, rapports ou articles complexes, avec une construction claire permettant au lecteur d'en saisir et de mémoriser les points importants. Je peux résumer et critiquer par écrit un ouvrage professionnel ou une œuvre littéraire.",
+      "wo": "Man naa bind benn mbind bu leer, bu daw te jaadu ak jamono. Man naa bind ay bataaxal, rapoor walla artikel yu jafe, ak benn tabax bu leer bu may na ki jàng fàttaliku point yu am solo. Man naa tënk te àtte ci mbind benn liggéeyu xam-xam walla literatiir."
+    }
+  }
+]

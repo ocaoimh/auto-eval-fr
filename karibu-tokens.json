@@ -1,0 +1,47 @@
+{
+  "_note": "Karibu Hub design tokens, extracted by sampling the Figma palette swatches (printed hex labels in the board contain copy/paste errors). Fonts inferred from UI screens.",
+  "brand": {
+    "coral": "#FC6854",
+    "coralStrong": "#F4543F",
+    "coralDark": "#BE2B16",
+    "coralSubtle": "#FFE2DC",
+    "greenCTA": "#61AC7E"
+  },
+  "neutrals": {
+    "background": "#FFF7F0",
+    "surface": "#FFFFFF",
+    "navy": "#102A43",
+    "slate": "#94A3B8",
+    "border": "#E8EEF3"
+  },
+  "chapters": {
+    "coral": "#FC6854",
+    "cyan": "#24A9B5",
+    "ambre": "#EF7F0F",
+    "sage": "#2D9D60"
+  },
+  "activities": {
+    "dialogue": "#369791",
+    "lexique": "#FC6854",
+    "comprehensionOrale": "#D945EE",
+    "expressionOrale": "#7C3AED",
+    "comprehensionEcrite": "#3B82F6",
+    "grammaire": "#FABF24",
+    "expressionEcrite": "#13B8A7"
+  },
+  "gamification": {
+    "star": "#FABF24",
+    "progress": "#28C671",
+    "streak": "#FF6B35"
+  },
+  "typography": {
+    "heading": "Poppins (600/700/800)",
+    "body": "Nunito (400/600/700)"
+  },
+  "system": {
+    "radius": "18px",
+    "radiusSmall": "12px",
+    "radiusPill": "999px",
+    "shadow": "0 6px 18px rgba(16,42,67,.08)"
+  }
+}

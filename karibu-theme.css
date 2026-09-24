@@ -1,0 +1,97 @@
+/* ============================================================
+   Karibu Hub — design tokens & base components
+   Extracted from the "Karibu Hubs Design Mission" Figma palette
+   + UI screens. Colours sampled from the palette swatches
+   (printed hex labels in the board contain copy/paste errors).
+   Reusable across Karibu Hub tools.
+   ============================================================ */
+:root{
+  /* Brand */
+  --k-coral:#FC6854;            /* brand primary */
+  --k-coral-strong:#F4543F;
+  --k-coral-dark:#BE2B16;
+  --k-coral-subtle:#FFE2DC;     /* tinted backgrounds */
+  --k-green:#61AC7E;            /* main CTA */
+  --k-green-dark:#4E9268;
+
+  /* Neutrals */
+  --k-bg:#FFF7F0;               /* app background — never pure white */
+  --k-surface:#FFFFFF;          /* cards, modals */
+  --k-navy:#102A43;             /* primary text */
+  --k-slate:#94A3B8;            /* secondary text */
+  --k-border:#E8EEF3;           /* borders, tracks */
+
+  /* Chapter colours */
+  --k-chap-coral:#FC6854;
+  --k-chap-cyan:#24A9B5;
+  --k-chap-ambre:#EF7F0F;
+  --k-chap-sage:#2D9D60;
+
+  /* Activity colours */
+  --k-dialogue:#369791;
+  --k-lexique:#FC6854;
+  --k-comp-orale:#D945EE;
+  --k-expr-orale:#7C3AED;
+  --k-comp-ecrite:#3B82F6;
+  --k-grammaire:#FABF24;
+  --k-expr-ecrite:#13B8A7;
+
+  /* Gamification */
+  --k-star:#FABF24;
+  --k-progress:#28C671;
+  --k-streak:#FF6B35;
+
+  /* System */
+  --k-radius:18px;
+  --k-radius-sm:12px;
+  --k-radius-pill:999px;
+  --k-shadow:0 6px 18px rgba(16,42,67,.08);
+  --k-shadow-sm:0 2px 6px rgba(16,42,67,.06);
+  --k-font-head:"Poppins",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --k-font-body:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+
+body.karibu{margin:0;background:var(--k-bg);color:var(--k-navy);
+  font-family:var(--k-font-body);line-height:1.55;-webkit-font-smoothing:antialiased}
+.karibu h1,.karibu h2,.karibu h3,.karibu .head{font-family:var(--k-font-head);font-weight:700}
+
+/* Card */
+.k-card{background:var(--k-surface);border-radius:var(--k-radius);
+  box-shadow:var(--k-shadow);padding:22px}
+
+/* Gradient header banner (activity-tinted) */
+.k-header{color:#fff;border-radius:0 0 22px 22px;padding:22px 20px 24px;
+  background:linear-gradient(120deg,var(--k-coral),var(--k-coral-strong))}
+.k-header .k-eyebrow{font-family:var(--k-font-head);font-weight:700;font-size:.72rem;
+  letter-spacing:.06em;text-transform:uppercase;opacity:.9}
+.k-header h1{font-size:1.5rem;margin:.15em 0 .1em}
+.k-header .k-sub{font-size:.85rem;opacity:.85}
+
+/* Buttons */
+.k-btn{font-family:var(--k-font-head);font-weight:700;cursor:pointer;border:0;
+  border-radius:var(--k-radius-pill);padding:15px 26px;font-size:1rem;transition:filter .15s,background .15s}
+.k-btn:hover{filter:brightness(.96)}
+.k-btn-cta{background:var(--k-green);color:#fff;width:100%}
+.k-btn-cta:hover{background:var(--k-green-dark);filter:none}
+.k-btn-coral{background:var(--k-coral);color:#fff}
+.k-btn-ghost{background:transparent;color:var(--k-slate);text-decoration:underline;
+  border-radius:0;padding:8px 4px;font-family:var(--k-font-body)}
+
+/* Selectable option (MCQ style) */
+.k-option{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  background:#eef1f4;border:2px solid transparent;border-radius:var(--k-radius-sm);
+  padding:16px 18px;cursor:pointer;font-size:1rem;transition:background .15s,border-color .15s}
+.k-option:hover{background:#e7ebef}
+.k-option.is-selected{background:var(--k-surface);border-color:var(--k-green)}
+
+/* Progress track */
+.k-progress{height:9px;background:var(--k-border);border-radius:var(--k-radius-pill);overflow:hidden}
+.k-progress > div{height:100%;background:var(--k-progress);border-radius:var(--k-radius-pill);transition:width .3s}
+
+/* Small uppercase section label (activity-tinted) */
+.k-eyebrow-inline{font-family:var(--k-font-head);font-weight:700;font-size:.75rem;
+  letter-spacing:.05em;text-transform:uppercase;color:var(--k-coral)}
+
+/* CEFR / level badge */
+.k-badge{display:inline-block;padding:4px 12px;border-radius:var(--k-radius-pill);
+  color:#fff;font-family:var(--k-font-head);font-weight:700;font-size:.8rem}

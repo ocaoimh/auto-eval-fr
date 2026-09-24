@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Auto-évaluation — Français (CECR)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="karibu-theme.css" rel="stylesheet">
+<style>
+  .wrap{max-width:520px;margin:0 auto;min-height:100vh;background:var(--k-bg);display:flex;flex-direction:column}
+  .content{padding:20px 16px 40px;flex:1}
+  .topbar{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 0}
+  .logo{font-family:var(--k-font-head);font-weight:800;color:var(--k-coral);font-size:1.15rem;line-height:1}
+  .logo small{color:var(--k-slate);font-weight:700;font-size:.7rem;display:block}
+  .langtoggle{display:inline-flex;border:1px solid var(--k-border);border-radius:var(--k-radius-pill);overflow:hidden;background:#fff}
+  .langtoggle button{border:0;background:transparent;font-family:var(--k-font-head);font-weight:700;
+    font-size:.8rem;padding:6px 14px;cursor:pointer;color:var(--k-slate)}
+  .langtoggle button.on{background:var(--k-coral);color:#fff}
+  .icon-badge{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:rgba(255,255,255,.22);font-size:1.2rem}
+  .muted{color:var(--k-slate)} .lead{color:var(--k-navy)}
+  h1.q{margin:.15em 0 .1em;color:var(--k-navy);font-size:1.5rem}
+  .field{margin:16px 0}
+  .field label{display:block;font-weight:700;margin-bottom:6px;color:var(--k-navy);font-size:.95rem}
+  .field input,.field select{width:100%;font:inherit;padding:13px 14px;border:1px solid var(--k-border);
+    border-radius:var(--k-radius-sm);background:#fff;color:var(--k-navy)}
+  .field input:focus,.field select:focus{outline:2px solid var(--k-coral);border-color:transparent}
+  .statement{font-size:1.2rem;font-weight:600;margin:6px 0 22px;color:var(--k-navy)}
+  .slider-row{display:flex;align-items:center;gap:14px;margin:22px 0 8px}
+  .slider-row input[type=range]{flex:1;accent-color:var(--k-coral)}
+  .slider-ends{font-size:.85rem;color:var(--k-slate);min-width:74px}
+  .lvlbig{text-align:center;font-family:var(--k-font-head);font-weight:800;color:var(--k-coral);font-size:1.3rem}
+  .options{display:flex;flex-direction:column;gap:12px;margin-top:8px}
+  .qcount{color:var(--k-slate);font-size:.85rem;text-align:right;margin-top:14px}
+  .results-list{display:flex;flex-direction:column;gap:12px;margin-top:6px}
+  .res-row{display:flex;align-items:center;gap:12px}
+  .res-dot{width:12px;height:12px;border-radius:50%;flex:0 0 auto}
+  .res-name{font-weight:700;flex:1}
+  .footnote{color:var(--k-slate);font-size:.78rem;text-align:center;padding:8px 20px 24px}
+  .footnote a{color:var(--k-slate)}
+  .wo-note{background:var(--k-coral-subtle);color:var(--k-coral-dark);font-size:.82rem;
+    border-radius:var(--k-radius-sm);padding:10px 14px;margin:0 16px 8px;text-align:center}
+  .stack{margin-bottom:16px} .hidden{display:none}
+  .cta-wrap{padding:12px 16px 20px;background:var(--k-bg);position:sticky;bottom:0}
+  .k-btn-cta:disabled{background:#cdd6cf;cursor:not-allowed}
+</style>
+</head>
+<body class="karibu">
+<div class="wrap">
+  <div class="topbar">
+    <span class="logo">Karibu<small>by BSF</small></span>
+    <span class="langtoggle">
+      <button id="lang-fr" class="on" onclick="setLang('fr')">FR</button>
+      <button id="lang-wo" onclick="setLang('wo')">WO</button>
+    </span>
+  </div>
+  <div id="wo-note" class="wo-note hidden"></div>
+
+  <!-- PROFILE -->
+  <div id="screen-profile">
+    <div class="content">
+      <div class="k-card stack">
+        <div class="k-eyebrow-inline" data-i18n="p_eyebrow"></div>
+        <h1 class="q" data-i18n="p_title"></h1>
+        <p class="muted" style="margin-top:0" data-i18n="p_sub"></p>
+        <div class="field"><label data-i18n="f_name"></label>
+          <input id="pf-name" type="text" autocomplete="off"></div>
+        <div class="field"><label data-i18n="f_region"></label>
+          <select id="pf-region"></select></div>
+        <div class="field"><label data-i18n="f_age"></label>
+          <select id="pf-age"></select></div>
+        <div class="field"><label data-i18n="f_gender"></label>
+          <select id="pf-gender"></select></div>
+      </div>
+    </div>
+    <div class="cta-wrap">
+      <button class="k-btn k-btn-cta" id="toSelfBtn" data-i18n="p_continue" disabled></button>
+    </div>
+  </div>
+
+  <!-- SELF-RATING -->
+  <div id="screen-self" class="hidden">
+    <div class="content">
+      <div class="k-card stack">
+        <div class="k-eyebrow-inline" data-i18n="s_eyebrow"></div>
+        <h1 class="q" data-i18n="s_title"></h1>
+        <p class="muted" style="margin-top:0" data-i18n="s_sub"></p>
+        <p class="lead" style="font-weight:700;margin-bottom:0" data-i18n="s_q"></p>
+        <div class="slider-row">
+          <span class="slider-ends" data-i18n="s_low"></span>
+          <input type="range" id="selfLevel" min="1" max="10" value="6">
+          <span class="slider-ends" style="text-align:right" data-i18n="s_high"></span>
+        </div>
+        <div class="lvlbig"><span id="selfLevelVal">6</span> <span style="color:var(--k-slate);font-size:.9rem;font-weight:600">/ 10</span></div>
+      </div>
+    </div>
+    <div class="cta-wrap">
+      <button class="k-btn k-btn-cta" id="startBtn" data-i18n="s_start"></button>
+    </div>
+  </div>
+
+  <!-- QUESTION -->
+  <div id="screen-q" class="hidden">
+    <div class="k-header" id="qHeader">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="icon-badge" id="qIcon">🎧</div>
+        <div>
+          <div class="k-eyebrow" id="qArea"></div>
+          <h1 style="font-size:1.15rem;margin:.1em 0 0" id="qHeadTitle"></h1>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="k-progress stack"><div id="progbar" style="width:0"></div></div>
+      <div class="k-card">
+        <p class="statement" id="qText"></p>
+        <div class="options">
+          <button class="k-option" id="btnYes"><span id="lblYes"></span><span aria-hidden="true">✓</span></button>
+          <button class="k-option" id="btnNo"><span id="lblNo"></span><span aria-hidden="true">→</span></button>
+        </div>
+        <div class="qcount" id="qCount"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div id="screen-res" class="hidden">
+    <div class="k-header" style="background:linear-gradient(120deg,var(--k-coral),var(--k-coral-strong))">
+      <div class="k-eyebrow" data-i18n="r_eyebrow"></div>
+      <h1 style="margin:.1em 0 0" id="resTitle"></h1>
+      <div class="k-sub" data-i18n="r_sub"></div>
+    </div>
+    <div class="content">
+      <div class="k-card"><div class="results-list" id="resList"></div></div>
+    </div>
+    <div class="cta-wrap">
+      <button class="k-btn k-btn-cta" id="restartBtn" data-i18n="r_restart"></button>
+      <div style="text-align:center"><button class="k-btn k-btn-ghost" id="copyBtn" data-i18n="r_copy"></button></div>
+    </div>
+  </div>
+
+  <p class="footnote" id="footnote"></p>
+</div>
+
+<script>
+/* ---------- Données bilingues : 30 descripteurs ---------- */
+const QUESTIONS = [{"ID":31,"CEFR":"A1","CEFRValue":0,"Area":"L'écoute","AreaValue":0,"title":{"fr":"Je peux comprendre des mots familiers et des expressions très courantes au sujet de moi-même, de ma famille et de l'environnement concret et immédiat, si les gens parlent lentement et distinctement.","wo":"Man naa dégg baat yu ma miin ak wax yu yomb ci sama bopp, sama njaboot ak li ma wër, su ñu waxee ndànk te leer."}},{"ID":36,"CEFR":"A2","CEFRValue":1,"Area":"L'écoute","AreaValue":0,"title":{"fr":"Je peux comprendre des expressions et un vocabulaire très fréquent relatifs à ce qui me concerne de très près (par ex. moi-même, ma famille, les achats, l'environnement proche, le travail). Je peux saisir l'essentiel d'annonces et de messages simples et clairs.","wo":"Man naa dégg wax ak baat yu bari yu jëm ci sama dund (sama bopp, njaboot, njënd, li ma wër, liggéey). Man naa jàpp li am solo ci ay yégle ak bataaxal yu yomb te leer."}},{"ID":41,"CEFR":"B1","CEFRValue":2,"Area":"L'écoute","AreaValue":0,"title":{"fr":"Je peux comprendre les points essentiels quand un langage clair et standard est utilisé et s'il s'agit de sujets familiers concernant le travail, l'école, les loisirs, etc. Je peux comprendre l'essentiel de nombreuses émissions de radio ou de télévision sur l'actualité ou sur des sujets qui m'intéressent à titre personnel ou professionnel si l'on parle d'une façon relativement lente et distincte.","wo":"Man naa dégg li am solo su ñu waxee ci làkk bu leer te miin, ci mbir yu ma miin (liggéey, jàngu, noflaay…). Man naa jàpp li ëpp ci emisioŋ radio walla tele su ñu waxee ndànk te leer."}},{"ID":46,"CEFR":"B2","CEFRValue":3,"Area":"L'écoute","AreaValue":0,"title":{"fr":"Je peux comprendre des conférences et des discours assez longs et même suivre une argumentation complexe si le sujet m'en est relativement familier. Je peux comprendre la plupart des émissions de télévision sur l'actualité et les informations. Je peux comprendre la plupart des films en langue standard.","wo":"Man naa dégg ay waxtaan ak diskuur yu gudd, te topp benn xalaat bu jafe su mbir mi may miin. Man naa jàpp li ëpp ci emisioŋ tele ak filim yu ñu def ci làkk bu standaar."}},{"ID":51,"CEFR":"C1","CEFRValue":4,"Area":"L'écoute","AreaValue":0,"title":{"fr":"Je peux comprendre un long discours même s'il n'est pas clairement structuré et que les articulations sont seulement implicites. Je peux comprendre les émissions de télévision et les films sans trop d'effort.","wo":"Man naa dégg diskuur bu gudd doonte du bu leer te seqoo yi ñungi ci biir. Man naa jàpp emisioŋ tele ak filim yu bare te bañ a sonn."}},{"ID":56,"CEFR":"C2","CEFRValue":5,"Area":"L'écoute","AreaValue":0,"title":{"fr":"Je n'ai aucune difficulté à comprendre le langage oral, que ce soit dans les conditions du direct ou dans les médias et quand on parle vite, à condition d'avoir du temps pour me familiariser avec un accent particulier.","wo":"Amuma benn jafe-jafe ci dégg wax, muy ci direk walla ci medià, te su ñu waxee gaaw, su ma amee tuuti jamono ngir miin aksaŋ bi."}},{"ID":32,"CEFR":"A1","CEFRValue":0,"Area":"Lecture","AreaValue":1,"title":{"fr":"Je peux comprendre des noms familiers, des mots ainsi que des phrases très simples, par exemple dans des annonces, des affiches ou des catalogues.","wo":"Man naa jàng tur yu ma miin, ay baat ak mbind yu yomb, ni ci ay yégle, ay afiche walla ay katalog."}},{"ID":37,"CEFR":"A2","CEFRValue":1,"Area":"Lecture","AreaValue":1,"title":{"fr":"Je peux lire des textes courts très simples. Je peux trouver une information particulière prévisible dans des documents courants comme les publicités, les prospectus, les menus et les horaires et je peux comprendre des lettres personnelles courtes et simples.","wo":"Man naa jàng ay mbind yu gàtt te yomb. Man naa gis xibaar bu ma soxla ci ay mbind ni reklaam, meññ ak orëe, te man naa jàng bataaxal yu gàtt te yomb."}},{"ID":42,"CEFR":"B1","CEFRValue":2,"Area":"Lecture","AreaValue":1,"title":{"fr":"Je peux comprendre des textes rédigés essentiellement dans une langue courante ou relative à mon travail. Je peux comprendre la description d'événements, l'expression de sentiments et de souhaits dans des lettres personnelles.","wo":"Man naa jàng ay mbind yu ñu bind ci làkk bu miin walla bu jëm ci sama liggéey. Man naa jàpp melokaanu xew-xew, yég-yég ak bëgg-bëgg ci ay bataaxal."}},{"ID":47,"CEFR":"B2","CEFRValue":3,"Area":"Lecture","AreaValue":1,"title":{"fr":"Je peux lire des articles et des rapports sur des questions contemporaines dans lesquels les auteurs adoptent une attitude particulière ou un certain point de vue. Je peux comprendre un texte littéraire contemporain en prose.","wo":"Man naa jàng ay artikel ak rapoor ci mbir yu jamono ci lu am xalaat bu wóor. Man naa jàpp benn mbind bu literatiir bu jamono."}},{"ID":52,"CEFR":"C1","CEFRValue":4,"Area":"Lecture","AreaValue":1,"title":{"fr":"Je peux comprendre des textes factuels ou littéraires longs et complexes et en apprécier les différences de style. Je peux comprendre des articles spécialisés et de longues instructions techniques même lorsqu'ils ne sont pas en relation avec mon domaine.","wo":"Man naa jàng ay mbind yu gudd te jafe, di jàpp seen wuute ci melokaan. Man naa jàpp ay artikel yu xóot ak ndigal yu gudd yu teknik, doonte bokkuñu ci sama wàll."}},{"ID":57,"CEFR":"C2","CEFRValue":5,"Area":"Lecture","AreaValue":1,"title":{"fr":"Je peux lire sans effort tout type de texte, même abstrait ou complexe quant au fond ou à la forme, par exemple un manuel, un article spécialisé ou une œuvre littéraire.","wo":"Man naa jàng lu yomb ay xeeti mbind yépp, doonte dañu jafe walla xóot ci seen tënk walla melokaan, ni ci benn téere, benn artikel bu xóot walla benn liggéeyu literatiir."}},{"ID":33,"CEFR":"A1","CEFRValue":0,"Area":"Interaction orale","AreaValue":2,"title":{"fr":"Je peux communiquer, de façon simple, à condition que l'interlocuteur soit disposé à répéter ou à reformuler ses phrases plus lentement et à m'aider à formuler ce que j'essaie de dire. Je peux poser des questions simples sur des sujets familiers ou sur ce dont j'ai immédiatement besoin, ainsi que répondre à de telles questions.","wo":"Man naa waxtaan ci lu yomb, su nit ki nangoo baamtu walla waxaat ndànk te dimbali ma. Man naa laaj ay laaj yu yomb ci mbir yu ma miin walla li ma soxla, te tontu ci laaj yu ni mel."}},{"ID":38,"CEFR":"A2","CEFRValue":1,"Area":"Interaction orale","AreaValue":2,"title":{"fr":"Je peux communiquer lors de tâches simples et habituelles ne demandant qu'un échange d'informations simple et direct sur des sujets et des activités familiers. Je peux avoir des échanges très brefs même si, en règle générale, je ne comprends pas assez pour poursuivre une conversation.","wo":"Man naa waxtaan ci mbir yu yomb te miin yu laaj rekk benn wexeltu xibaar bu yomb. Man naa def ay wexeltu yu gàtt, doonte du ma dégg lu doy ngir wéyal waxtaan bi."}},{"ID":43,"CEFR":"B1","CEFRValue":2,"Area":"Interaction orale","AreaValue":2,"title":{"fr":"Je peux faire face à la majorité des situations que l'on peut rencontrer au cours d'un voyage dans une région où la langue est parlée. Je peux prendre part sans préparation à une conversation sur des sujets familiers ou d'intérêt personnel ou qui concernent la vie quotidienne (par exemple famille, loisirs, travail, voyage et actualité).","wo":"Man naa mucc ci li ëpp ci mbir yu man a am ci benn tukki ci gox bu ñuy wax làkk wi. Man naa bokk ci benn waxtaan bu ma waajul ci mbir yu ma miin walla yu ma bëgg (njaboot, noflaay, liggéey, tukki, xibaar)."}},{"ID":48,"CEFR":"B2","CEFRValue":3,"Area":"Interaction orale","AreaValue":2,"title":{"fr":"Je peux communiquer avec un degré de spontanéité et d'aisance qui rende possible une interaction normale avec un locuteur natif. Je peux participer activement à une conversation dans des situations familières, présenter et défendre mes opinions.","wo":"Man naa waxtaan ak gaaw ak yomb bu may may waxtaan bu yaatu ak ku làkk wi di boppam. Man naa bokk bu baax ci benn waxtaan ci mbir yu ma miin, te wone ak aar sama xalaat."}},{"ID":53,"CEFR":"C1","CEFRValue":4,"Area":"Interaction orale","AreaValue":2,"title":{"fr":"Je peux m'exprimer spontanément et couramment sans trop apparemment devoir chercher mes mots. Je peux utiliser la langue de manière souple et efficace pour des relations sociales ou professionnelles. Je peux exprimer mes idées et opinions avec précision et lier mes interventions à celles de mes interlocuteurs.","wo":"Man naa wax ak yomb te gaaw te bañ a seet sama baat. Man naa jëfandikoo làkk wi ci lu ràññeeku ngir séq-séq ak liggéey. Man naa wone sama xalaat ak sama gis-gis te boole ko ak li sama nawle di wax."}},{"ID":58,"CEFR":"C2","CEFRValue":5,"Area":"Interaction orale","AreaValue":2,"title":{"fr":"Je peux participer sans effort à toute conversation ou discussion et je suis aussi très à l'aise avec les expressions idiomatiques et les tournures courantes. Je peux m'exprimer couramment et exprimer avec précision de fines nuances de sens. En cas de difficulté, je peux faire marche arrière pour y remédier avec assez d'habileté et pour qu'elle passe presque inaperçue.","wo":"Man naa bokk ci ndaje mu ne walla waxtaan te sonnuma, te ma miin baat yu idyomatik. Man naa wax ak yomb te wone ay wuute yu ndaw ci firi. Su jafe-jafe amee, man naa ko defaraat ci lu ñu manul a gis."}},{"ID":34,"CEFR":"A1","CEFRValue":0,"Area":"Production orale","AreaValue":3,"title":{"fr":"Je peux utiliser des expressions et des phrases simples pour décrire mon lieu d'habitation et les gens que je connais.","wo":"Man naa jëfandikoo ay wax yu yomb ngir wax fu ma dëkk ak ñi ma xam."}},{"ID":39,"CEFR":"A2","CEFRValue":1,"Area":"Production orale","AreaValue":3,"title":{"fr":"Je peux utiliser une série de phrases ou d'expressions pour décrire en termes simples ma famille et d'autres gens, mes conditions de vie, ma formation et mon activité professionnelle actuelle ou récente.","wo":"Man naa jëfandikoo ay wax ngir wax ci lu yomb sama njaboot, ñeneen, sama dund, sama njàng ak sama liggéey."}},{"ID":44,"CEFR":"B1","CEFRValue":2,"Area":"Production orale","AreaValue":3,"title":{"fr":"Je peux m'exprimer de manière simple afin de raconter des expériences et des événements, mes rêves, mes espoirs ou mes buts. Je peux brièvement donner les raisons et explications de mes opinions ou projets. Je peux raconter une histoire ou l'intrigue d'un livre ou d'un film et exprimer mes réactions.","wo":"Man naa wax ci lu yomb ngir nettali ay xew-xew, sama gént, sama yaakaar walla sama pexe. Man naa joxe ci lu gàtt li tax ci sama xalaat. Man naa nettali benn téere walla filim, te wone sama yég-yég."}},{"ID":49,"CEFR":"B2","CEFRValue":3,"Area":"Production orale","AreaValue":3,"title":{"fr":"Je peux m'exprimer de façon claire et détaillée sur une grande gamme de sujets relatifs à mes centres d'intérêt. Je peux développer un point de vue sur un sujet d'actualité et expliquer les avantages et les inconvénients de différentes possibilités.","wo":"Man naa wax ci lu leer te wéral ci mbir yu bari yu jëm ci li ma bëgg. Man naa yékkati benn xalaat ci mbir bu jamono te firndeel njariñ ak ñàkk yu ay tànneef."}},{"ID":54,"CEFR":"C1","CEFRValue":4,"Area":"Production orale","AreaValue":3,"title":{"fr":"Je peux présenter des descriptions claires et détaillées de sujets complexes, en intégrant des thèmes qui leur sont liés, en développant certains points et en terminant mon intervention de façon appropriée.","wo":"Man naa wone ay melokaan yu leer te wéral ci mbir yu jafe, boole ci ay tema yu ci aju, di yokk ay wàll te jeexal sama wax ci lu jaadu."}},{"ID":59,"CEFR":"C2","CEFRValue":5,"Area":"Production orale","AreaValue":3,"title":{"fr":"Je peux présenter une description ou une argumentation claire et fluide dans un style adapté au contexte, construire une présentation de façon logique et aider mon auditeur à remarquer et à se rappeler les points importants.","wo":"Man naa wone benn melokaan walla werante bu leer te ràññeeku ci benn stiil bu jaadu, tabax sama wax ci lu jubluwu te dimbali ku may déglu mu fàttaliku li am solo."}},{"ID":35,"CEFR":"A1","CEFRValue":0,"Area":"Rédaction","AreaValue":4,"title":{"fr":"Je peux écrire une courte carte postale simple, par exemple de vacances. Je peux porter des détails personnels dans un questionnaire, inscrire par exemple mon nom, ma nationalité et mon adresse sur une fiche d'hôtel.","wo":"Man naa bind benn kart postal bu gàtt te yomb, ni ci ay vakaans. Man naa dugal ay xibaaru bopp ci benn keyit, ni sama tur, sama réew ak sama adres ci benn fiise otel."}},{"ID":40,"CEFR":"A2","CEFRValue":1,"Area":"Rédaction","AreaValue":4,"title":{"fr":"Je peux écrire des notes et messages simples et courts. Je peux écrire une lettre personnelle très simple, par exemple de remerciements.","wo":"Man naa bind ay not ak bataaxal yu yomb te gàtt. Man naa bind benn bataaxal bu yomb, ni bu gërëm."}},{"ID":45,"CEFR":"B1","CEFRValue":2,"Area":"Rédaction","AreaValue":4,"title":{"fr":"Je peux écrire un texte simple et cohérent sur des sujets familiers ou qui m'intéressent personnellement. Je peux écrire des lettres personnelles pour décrire expériences et impressions.","wo":"Man naa bind benn mbind bu yomb te dëppoo ci mbir yu ma miin walla yu ma bëgg. Man naa bind ay bataaxal ngir wax sama jaar-jaar ak sama yég-yég."}},{"ID":50,"CEFR":"B2","CEFRValue":3,"Area":"Rédaction","AreaValue":4,"title":{"fr":"Je peux écrire des textes clairs et détaillés sur une grande gamme de sujets relatifs à mes intérêts. Je peux écrire un essai ou un rapport en transmettant une information ou en exposant des raisons pour ou contre une opinion donnée. Je peux écrire des lettres qui mettent en valeur le sens que j'attribue personnellement aux événements et aux expériences.","wo":"Man naa bind ay mbind yu leer te wéral ci mbir yu bari. Man naa bind benn ese walla rapoor di joxe xibaar walla wone li ma tax a nangu walla bañ benn xalaat. Man naa bind ay bataaxal yu wone li ay xew-xew jariñ ci man."}},{"ID":55,"CEFR":"C1","CEFRValue":4,"Area":"Rédaction","AreaValue":4,"title":{"fr":"Je peux m'exprimer dans un texte clair et bien structuré et développer mon point de vue. Je peux écrire sur des sujets complexes dans une lettre, un essai ou un rapport, en soulignant les points que je juge importants. Je peux adopter un style adapté au destinataire.","wo":"Man naa bind benn mbind bu leer te tektal bu baax, te yokk sama xalaat. Man naa bind ci mbir yu jafe ci benn bataaxal, ese walla rapoor, te wone li ma jàpp ni li gën a am solo. Man naa jëfandikoo benn stiil bu jaadu ak ki may bind."}},{"ID":60,"CEFR":"C2","CEFRValue":5,"Area":"Rédaction","AreaValue":4,"title":{"fr":"Je peux écrire un texte clair, fluide et stylistiquement adapté aux circonstances. Je peux rédiger des lettres, rapports ou articles complexes, avec une construction claire permettant au lecteur d'en saisir et de mémoriser les points importants. Je peux résumer et critiquer par écrit un ouvrage professionnel ou une œuvre littéraire.","wo":"Man naa bind benn mbind bu leer, bu daw te jaadu ak jamono. Man naa bind ay bataaxal, rapoor walla artikel yu jafe, ak benn tabax bu leer bu may na ki jàng fàttaliku point yu am solo. Man naa tënk te àtte ci mbind benn liggéeyu xam-xam walla literatiir."}}];
+
+/* ---------- i18n ---------- */
+let lang = 'fr';
+const T = {
+ fr:{
+  p_eyebrow:"Bienvenue", p_title:"Avant de commencer",
+  p_sub:"Quelques informations pour personnaliser votre parcours.",
+  f_name:"Prénom ou pseudonyme", f_name_ph:"Votre prénom",
+  f_region:"Région", f_region_ph:"Choisissez votre région",
+  f_age:"Tranche d'âge", f_gender:"Genre", f_select:"Sélectionnez",
+  p_continue:"Continuer",
+  s_eyebrow:"Auto-évaluation", s_title:"Quel est votre niveau de français ?",
+  s_sub:"Une série de courtes affirmations « Je peux… » pour situer votre niveau selon les six niveaux du CECR (A1 à C2).",
+  s_q:"Pour commencer, comment évaluez-vous globalement votre niveau ?",
+  s_low:"Pas très bon", s_high:"Très bon", s_start:"Démarrer le test",
+  q_head:"Pouvez-vous le faire en français ?", q_yes:"Oui, je peux le faire",
+  q_no:"Pas encore", q_count:"Question",
+  r_eyebrow:"Résultat", r_title:"Votre profil CECR",
+  r_sub:"Niveau estimé par domaine de compétence",
+  r_restart:"Recommencer", r_copy:"Copier les résultats", r_copied:"Copié ✓",
+  areas:["L'écoute","Lecture","Interaction orale","Production orale","Rédaction"],
+  cefr:{A1:"Débutant",A2:"Élémentaire",B1:"Intermédiaire",B2:"Avancé",C1:"Autonome",C2:"Maîtrise","Pré-A1":"En deçà de A1","—":"Non déterminé"},
+  footnote:"Reconstruction hors-ligne à des fins d'évaluation interne. Descripteurs CECR et algorithme d'après l'outil « Auto-évaluez vos capacités linguistiques » de la Journée européenne des langues (CELV / Conseil de l'Europe). Descripteurs CECR © Conseil de l'Europe. Identité visuelle : Karibu Hub / BSF."
+ },
+ wo:{
+  p_eyebrow:"Dalal ak jàmm", p_title:"Balaa nu tàmbali",
+  p_sub:"Ay xibaar yu néew ngir saxal sa yoon.",
+  f_name:"Tur walla tur wu ñu la xam", f_name_ph:"Sa tur",
+  f_region:"Diiwaan", f_region_ph:"Tannal sa diiwaan",
+  f_age:"Sa at", f_gender:"Xeet", f_select:"Tannal",
+  p_continue:"Jàll",
+  s_eyebrow:"Seetu sa bopp", s_title:"Ban tolluwaay nga am ci farañse ?",
+  s_sub:"Ay mbind yu gàtt « Man naa… » ngir xam sa tolluwaay ci farañse, ci juróom-benni tolluwaayu CECR (A1 ba C2).",
+  s_q:"Ngir tàmbali, naka nga gis sa bopp ci farañse ?",
+  s_low:"Baaxul lool", s_high:"Baax na lool", s_start:"Tàmbali test bi",
+  q_head:"Man nga ko def ci farañse ?", q_yes:"Waaw, man naa ko def",
+  q_no:"Du léegi", q_count:"Laaj",
+  r_eyebrow:"Njeexital", r_title:"Sa profil CECR",
+  r_sub:"Tolluwaay bu ñu tënk ci benn benn wàll",
+  r_restart:"Tàmbaleeti", r_copy:"Kopie njeexital yi", r_copied:"Kopie na ✓",
+  areas:["Dégg","Jàng","Waxtaan","Wax","Bind"],
+  cefr:{A1:"Tàmbalikat",A2:"Xam-tuuti",B1:"Digg-digg",B2:"Jëm-kanam",C1:"Boppam",C2:"Xareñ","Pré-A1":"Bala tàmbali","—":"Xamewul"},
+  footnote:"Jumtukaay bu ñu defaraat ngir seet ci biir. Mbind yi ci wolof ñungi ci coppite (à valider). Descripteurs CECR © Conseil de l'Europe. Melokaan : Karibu Hub / BSF."
+ }
+};
+const t = k => T[lang][k];
+
+/* Profil : régions du Sénégal (14), tranches d'âge, genre */
+const REGIONS = ["Dakar","Diourbel","Fatick","Kaffrine","Kaolack","Kédougou","Kolda",
+  "Louga","Matam","Saint-Louis","Sédhiou","Tambacounda","Thiès","Ziguinchor"];
+const AGES = [
+  {v:"<18", fr:"Moins de 18 ans", wo:"Ci suufu 18 at"},
+  {v:"18-24", fr:"18–24 ans", wo:"18–24 at"},
+  {v:"25-34", fr:"25–34 ans", wo:"25–34 at"},
+  {v:"35-44", fr:"35–44 ans", wo:"35–44 at"},
+  {v:"45-54", fr:"45–54 ans", wo:"45–54 at"},
+  {v:"55+", fr:"55 ans et plus", wo:"55 at ak yenn"}
+];
+const GENDERS = [
+  {v:"F", fr:"Femme", wo:"Jigéen"},
+  {v:"M", fr:"Homme", wo:"Góor"},
+  {v:"A", fr:"Autre", wo:"Beneen"},
+  {v:"N", fr:"Préfère ne pas répondre", wo:"Bëgguma ko wax"}
+];
+
+/* ---------- Habillage par domaine ---------- */
+const AREA_ICON  = {0:"🎧",1:"📖",2:"💬",3:"🗣️",4:"✍️"};
+const AREA_COLOR = {0:"#D945EE",1:"#3B82F6",2:"#7C3AED",3:"#369791",4:"#13B8A7"};
+const CEFR_BY_VALUE = {0:"A1",1:"A2",2:"B1",3:"B2",4:"C1",5:"C2"};
+const CEFR_COLOR = {A1:"#3B82F6",A2:"#2D9D60",B1:"#FABF24",B2:"#EF7F0F",C1:"#FC6854",C2:"#7C3AED","Pré-A1":"#94A3B8"};
+
+/* ---------- Algorithme adaptatif (fidèle à l'outil d'origine) ---------- */
+const matrix = [
+  [{mask:[1,1,1],levels:[4,5],result:5}],[{mask:[1,1,0],levels:[4,5],result:4}],
+  [{mask:[1,0,1,1],levels:[4,2,3],result:3}],[{mask:[1,0,1,0],levels:[4,2,3],result:2}],
+  [{mask:[1,0,0,1],levels:[4,2,1],result:1}],[{mask:[1,0,0,0,1],levels:[4,2,1,0],result:0}],
+  [{mask:[1,0,0,0,0],levels:[4,2,1,0],result:-1}],[{mask:[0,1,1,1,1],levels:[1,3,4,5],result:5}],
+  [{mask:[0,1,1,1,0],levels:[1,3,4,5],result:4}],[{mask:[0,1,1,0],levels:[1,3,4],result:3}],
+  [{mask:[0,1,0,1],levels:[1,3,2],result:2}],[{mask:[0,1,0,0],levels:[1,3,2],result:1}],
+  [{mask:[0,0,1],levels:[1,0],result:0}],[{mask:[0,0,0],levels:[1,0],result:-1}],
+];
+const CEFR_VALUE_OF_FIRST_QUESTION = {1:1,2:1,3:1,4:1,5:4,6:4,7:4,8:4,9:4,10:4};
+const minCefrValue = 0;
+let state, currentQuestion, selectedLevel, answeredCount, profile = {};
+const flat = () => matrix.flat();
+const matchRow = mask => flat().find(r => r.mask.join() === mask.join());
+function getNextRandomArea(){
+  const nf = Object.entries(state).filter(([_,v]) => !v.isFinished);
+  if(nf.length === 0) return null;
+  const mn = Math.min(...nf.map(([_,v]) => v.mask.length));
+  const c = nf.filter(([_,v]) => v.mask.length === mn);
+  return parseInt(c[Math.floor(Math.random()*c.length)][0],10);
+}
+function start(){
+  selectedLevel = parseInt(document.getElementById('selfLevel').value,10);
+  answeredCount = 0; currentQuestion = null;
+  const fs = selectedLevel > 4 ? 1 : 0;
+  state = {}; for(let a=0;a<5;a++) state[a] = {mask:[fs],isFinished:false};
+  next();
+}
+function answer(can){
+  const a = currentQuestion.AreaValue;
+  state[a].mask = [...state[a].mask, can];
+  state[a].isFinished = !!matchRow(state[a].mask);
+  answeredCount++; next();
+}
+function next(){
+  const area = getNextRandomArea();
+  if(area === null) return finish();
+  if(Object.values(state).some(r => r.mask.length === 1)){
+    const fl = CEFR_VALUE_OF_FIRST_QUESTION[selectedLevel] ?? minCefrValue;
+    currentQuestion = QUESTIONS.find(q => q.CEFRValue === fl && q.AreaValue === area);
+  } else {
+    const row = matrix.find(it => {
+      const m = it[0].mask;
+      if(m.length < state[area].mask.length) return false;
+      return state[area].mask.every((v,i) => v === m[i]);
+    });
+    const nl = row ? row[0].levels[state[area].mask.length - 1] : null;
+    currentQuestion = (nl !== null && nl !== undefined)
+      ? QUESTIONS.find(q => q.AreaValue === area && q.CEFRValue === nl) : null;
+  }
+  if(currentQuestion) renderQuestion();
+  else { state[area].isFinished = true; next(); }
+}
+function finish(){
+  const r = {}; for(let a=0;a<5;a++) r[a] = matchRow(state[a].mask)?.result;
+  lastResults = r; showResults();
+}
+
+/* ---------- Rendu ---------- */
+function show(id){ ['screen-profile','screen-self','screen-q','screen-res'].forEach(s =>
+  document.getElementById(s).classList.toggle('hidden', s !== id)); currentScreen = id; }
+let currentScreen = 'screen-profile', lastResults = null;
+
+function shade(hex,pct){const n=parseInt(hex.slice(1),16);let r=n>>16,g=(n>>8)&255,b=n&255;
+  const f=pct/100,ch=v=>Math.max(0,Math.min(255,Math.round(v+(f<0?v*f:(255-v)*f))));
+  return '#'+[ch(r),ch(g),ch(b)].map(x=>x.toString(16).padStart(2,'0')).join('');}
+
+function renderQuestion(){
+  show('screen-q');
+  const q = currentQuestion, c = AREA_COLOR[q.AreaValue];
+  document.getElementById('qHeader').style.background = 'linear-gradient(120deg,'+c+','+shade(c,-18)+')';
+  document.getElementById('qIcon').textContent = AREA_ICON[q.AreaValue];
+  document.getElementById('qArea').textContent = t('areas')[q.AreaValue];
+  document.getElementById('qHeadTitle').textContent = t('q_head');
+  document.getElementById('qText').textContent = q.title[lang];
+  document.getElementById('lblYes').textContent = t('q_yes');
+  document.getElementById('lblNo').textContent = t('q_no');
+  document.getElementById('qCount').textContent = t('q_count') + ' ' + (answeredCount + 1);
+  const done = Object.values(state).filter(s => s.isFinished).length;
+  document.getElementById('progbar').style.width = Math.min(100,(done/5)*100) + '%';
+}
+function resultLabel(v){
+  let cefr = (v===undefined||v===null) ? '—' : (v===-1 ? 'Pré-A1' : CEFR_BY_VALUE[v]);
+  return {cefr, txt:t('cefr')[cefr] || ''};
+}
+function showResults(){
+  show('screen-res');
+  document.getElementById('resTitle').textContent =
+    (profile.name ? profile.name + ' — ' : '') + t('r_title');
+  const list = document.getElementById('resList'); list.innerHTML = '';
+  for(let a=0;a<5;a++){
+    const r = resultLabel(lastResults[a]);
+    const row = document.createElement('div'); row.className='res-row';
+    const dot = document.createElement('span'); dot.className='res-dot'; dot.style.background=AREA_COLOR[a];
+    const name = document.createElement('span'); name.className='res-name'; name.textContent=t('areas')[a];
+    const badge = document.createElement('span'); badge.className='k-badge';
+    badge.style.background = CEFR_COLOR[r.cefr] || 'var(--k-slate)'; badge.textContent = r.cefr;
+    const txt = document.createElement('span'); txt.className='muted';
+    txt.style.cssText='min-width:96px;text-align:right;font-size:.85rem'; txt.textContent=r.txt;
+    row.append(dot,name,badge,txt); list.appendChild(row);
+  }
+}
+
+/* ---------- Langue ---------- */
+function fillSelect(id, items, getLabel, getVal, ph){
+  const s = document.getElementById(id); const prev = s.value;
+  s.innerHTML = '<option value="" disabled selected>'+ph+'</option>';
+  items.forEach(it => { const o=document.createElement('option');
+    o.value=getVal(it); o.textContent=getLabel(it); s.appendChild(o); });
+  if(prev) s.value = prev;
+}
+function applyStatic(){
+  document.querySelectorAll('[data-i18n]').forEach(el => el.textContent = t(el.dataset.i18n));
+  document.getElementById('pf-name').placeholder = t('f_name_ph');
+  fillSelect('pf-region', REGIONS, r=>r, r=>r, t('f_region_ph'));
+  fillSelect('pf-age', AGES, a=>a[lang], a=>a.v, t('f_select'));
+  fillSelect('pf-gender', GENDERS, g=>g[lang], g=>g.v, t('f_select'));
+  document.getElementById('footnote').textContent = t('footnote');
+  const wn = document.getElementById('wo-note');
+  if(lang==='wo'){ wn.textContent='⚠️ Firi wolof wi, ñungi ci coppite. / Traduction wolof à valider.'; wn.classList.remove('hidden'); }
+  else wn.classList.add('hidden');
+}
+function setLang(l){
+  lang = l; document.documentElement.lang = l;
+  document.getElementById('lang-fr').classList.toggle('on', l==='fr');
+  document.getElementById('lang-wo').classList.toggle('on', l==='wo');
+  applyStatic();
+  if(currentScreen==='screen-q' && currentQuestion) renderQuestion();
+  if(currentScreen==='screen-res' && lastResults) showResults();
+}
+
+/* ---------- Profil : validation ---------- */
+function checkProfile(){
+  profile = {
+    name: document.getElementById('pf-name').value.trim(),
+    region: document.getElementById('pf-region').value,
+    age: document.getElementById('pf-age').value,
+    gender: document.getElementById('pf-gender').value
+  };
+  const ok = profile.name && profile.region && profile.age && profile.gender;
+  document.getElementById('toSelfBtn').disabled = !ok;
+  return ok;
+}
+
+/* ---------- Événements ---------- */
+['pf-name','pf-region','pf-age','pf-gender'].forEach(id =>
+  document.getElementById(id).addEventListener('input', checkProfile));
+document.getElementById('toSelfBtn').addEventListener('click', () => { if(checkProfile()) show('screen-self'); });
+document.getElementById('selfLevel').addEventListener('input', e =>
+  document.getElementById('selfLevelVal').textContent = e.target.value);
+document.getElementById('startBtn').addEventListener('click', start);
+document.getElementById('btnYes').addEventListener('click', () => answer(1));
+document.getElementById('btnNo').addEventListener('click', () => answer(0));
+document.getElementById('restartBtn').addEventListener('click', () => show('screen-profile'));
+document.getElementById('copyBtn').addEventListener('click', () => {
+  if(!lastResults) return;
+  const lines = [
+    'Auto-évaluation français (CECR)',
+    'Nom: '+(profile.name||''), 'Région: '+(profile.region||''),
+    'Âge: '+(profile.age||''), 'Genre: '+(profile.gender||''), '—',
+    ...[0,1,2,3,4].map(a => T.fr.areas[a]+': '+resultLabel(lastResults[a]).cefr)
+  ];
+  navigator.clipboard?.writeText(lines.join('\n'));
+  const b = document.getElementById('copyBtn'), o = b.textContent;
+  b.textContent = t('r_copied'); setTimeout(()=>b.textContent=o,1500);
+});
+
+/* init */
+applyStatic(); checkProfile();
+</script>
+</body>
+</html>
